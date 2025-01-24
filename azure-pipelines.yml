@@ -48,30 +48,22 @@ steps:
   inputs:
     command: 'test'
     projects: '$(Build.SourcesDirectory)/TestAPI/TestAPI.csproj'
-    arguments: '--configuration $(buildConfiguration) --logger trx --collect:"XPlat Code Coverage" --results-directory $(Agent.TempDirectory)'
-
-- script: |
-    echo "Listing files after tests..."
-    ls -R $(Agent.TempDirectory)  # Lister les fichiers générés
-  displayName: 'List Temporary Files'
-
-- script: |
-    echo "Displaying log file content..."
-    cat $(Build.SourcesDirectory)/log.txt  # Lire le log des tests
-  displayName: 'Display Test Log'
-
-- script: |
-    reportgenerator -reports:$(Agent.TempDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.ArtifactStagingDirectory)/CoverageReport
-  displayName: 'Generate coverage report'
+    arguments: '--configuration $(buildConfiguration) --logger trx --collect:"XPlat Code Coverage"'
 
 - task: PublishCodeCoverageResults@2
   inputs:
-    summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'
+    summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'  
+- script: |
+    echo "Displaying log file content..."
+    cat $(Build.SourcesDirectory)/log.txt  # Lire log.txt pour les erreurs.
+  displayName: 'Display Test Log'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     zipAfterPublish: true
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    
+
 
 - task: PublishPipelineArtifact@1
   inputs:
@@ -82,3 +74,4 @@ steps:
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)/Minimal.zip'
     artifactName: 'Minimal'
+
