@@ -48,12 +48,17 @@ steps:
   inputs:
     command: 'test'
     projects: '$(Build.SourcesDirectory)/TestAPI/TestAPI.csproj'
-    arguments: '--configuration $(buildConfiguration) --logger trx --collect:"XPlat Code Coverage" --diag:log.txt'
+    arguments: '--configuration $(buildConfiguration) --logger trx --collect:"XPlat Code Coverage" --results-directory $(Agent.TempDirectory)'
 
 - script: |
-    echo "Listing coverage files..."
-    ls -R $(Agent.TempDirectory) # Lister les fichiers de couverture générés
-  displayName: 'List Coverage Files'
+    echo "Listing files after tests..."
+    ls -R $(Agent.TempDirectory)  # Lister les fichiers générés
+  displayName: 'List Temporary Files'
+
+- script: |
+    echo "Displaying log file content..."
+    cat $(Build.SourcesDirectory)/log.txt  # Lire le log des tests
+  displayName: 'Display Test Log'
 
 - script: |
     reportgenerator -reports:$(Agent.TempDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.ArtifactStagingDirectory)/CoverageReport
@@ -62,7 +67,6 @@ steps:
 - task: PublishCodeCoverageResults@2
   inputs:
     summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'
-
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
