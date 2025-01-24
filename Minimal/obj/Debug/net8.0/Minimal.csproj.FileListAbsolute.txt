@@ -175,3 +175,4 @@ C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Minim
 C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Minimal\obj\Debug\net8.0\Minimal.pdb
 C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Minimal\obj\Debug\net8.0\Minimal.genruntimeconfig.cache
 C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Minimal\obj\Debug\net8.0\ref\Minimal.dll
+C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Minimal\obj\Debug\net8.0\Minimal.sourcelink.json
