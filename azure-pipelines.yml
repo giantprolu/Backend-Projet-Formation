@@ -50,9 +50,14 @@ steps:
     projects: '$(Build.SourcesDirectory)/TestAPI/TestAPI.csproj'
     arguments: '--configuration $(buildConfiguration) --logger trx --collect:"XPlat Code Coverage" --diag:log.txt'
 
+- script: |
+    reportgenerator -reports:$(Agent.TempDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.ArtifactStagingDirectory)/CoverageReport
+  displayName: 'Generate coverage report'
+
 - task: PublishCodeCoverageResults@2
   inputs:
     summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'  
+
 
 - task: DotNetCoreCLI@2
   inputs:
