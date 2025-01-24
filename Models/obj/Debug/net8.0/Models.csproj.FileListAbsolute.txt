@@ -10,3 +10,4 @@ C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Model
 C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Models\obj\Debug\net8.0\refint\Models.dll
 C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Models\obj\Debug\net8.0\Models.pdb
 C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Models\obj\Debug\net8.0\ref\Models.dll
+C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Models\obj\Debug\net8.0\Models.sourcelink.json

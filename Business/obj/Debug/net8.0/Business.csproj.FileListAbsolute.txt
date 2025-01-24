@@ -13,3 +13,4 @@ C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Busin
 C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Business\obj\Debug\net8.0\refint\Business.dll
 C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Business\obj\Debug\net8.0\Business.pdb
 C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Business\obj\Debug\net8.0\ref\Business.dll
+C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Business\obj\Debug\net8.0\Business.sourcelink.json

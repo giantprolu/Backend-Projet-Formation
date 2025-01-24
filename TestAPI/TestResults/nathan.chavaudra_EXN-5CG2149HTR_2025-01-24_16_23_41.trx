@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="cffeda87-9c2d-4c60-89c9-ce75f930b340" name="nathan.chavaudra@EXN-5CG2149HTR 2025-01-24 16:23:41" runUser="ATLAS\nathan.chavaudra" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-01-24T16:23:41.0204534+01:00" queuing="2025-01-24T16:23:41.0204535+01:00" start="2025-01-24T16:23:33.6969289+01:00" finish="2025-01-24T16:23:44.8301927+01:00" />
+  <TestSettings name="default" id="c8109825-0c51-4042-9058-7293b7e4318f">
+    <Deployment runDeploymentRoot="nathan.chavaudra_EXN-5CG2149HTR_2025-01-24_16_23_41" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="42c62fa4-7095-4b44-9338-b600d9c9cda9" testId="221c4bd2-037b-252f-d662-0438336c3ee3" testName="TestAPI.TU_EleveAPI.TU_EleveAPI.TestGetEleveById" computerName="EXN-5CG2149HTR" duration="00:00:00.0020315" startTime="2025-01-24T16:23:40.6491031+01:00" endTime="2025-01-24T16:23:40.6491856+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="42c62fa4-7095-4b44-9338-b600d9c9cda9" />
+    <UnitTestResult executionId="0d8fa1da-59bb-454c-a6a6-91ea79061318" testId="8c315890-c4d0-651b-c2f8-9e0ab80c922a" testName="TestAPI.TU_EleveMini.TestGetEleves" computerName="EXN-5CG2149HTR" duration="00:00:00.0465753" startTime="2025-01-24T16:23:43.7486133+01:00" endTime="2025-01-24T16:23:43.7938287+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0d8fa1da-59bb-454c-a6a6-91ea79061318" />
+    <UnitTestResult executionId="48a32eff-8431-40b9-840c-6cdb31af45f1" testId="ee529ac1-80eb-0ca5-09af-bfc0fbb2038a" testName="TestAPI.TU_EleveAPI.TU_EleveAPI.TestGetEleves" computerName="EXN-5CG2149HTR" duration="00:00:00.0096749" startTime="2025-01-24T16:23:40.6567414+01:00" endTime="2025-01-24T16:23:40.6590916+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="48a32eff-8431-40b9-840c-6cdb31af45f1" />
+    <UnitTestResult executionId="1e36dc0e-41d9-4e42-ba26-b6dcb762697e" testId="2427e8b5-b9b5-d27d-1220-f25778801315" testName="TestAPI.TU_EleveAPI.TU_EleveAPI.TestAddEleve" computerName="EXN-5CG2149HTR" duration="00:00:00.3690849" startTime="2025-01-24T16:23:40.2870342+01:00" endTime="2025-01-24T16:23:40.6452279+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1e36dc0e-41d9-4e42-ba26-b6dcb762697e" />
+    <UnitTestResult executionId="08988641-b1fd-48c8-85a5-be96c12b04e5" testId="842f96d3-1a00-1b07-b2eb-3cb28c687223" testName="TestAPI.TU_EleveMini.TestUpdateEleveByName" computerName="EXN-5CG2149HTR" duration="00:00:00.0551948" startTime="2025-01-24T16:23:43.6924311+01:00" endTime="2025-01-24T16:23:43.7466877+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="08988641-b1fd-48c8-85a5-be96c12b04e5" />
+    <UnitTestResult executionId="0b359e31-2c95-4c4d-8b13-0f930f051b95" testId="40d4c40c-1d33-eac6-ce90-20f68a529345" testName="TestAPI.TU_EleveMini.TestDeleteEleveById" computerName="EXN-5CG2149HTR" duration="00:00:04.0862996" startTime="2025-01-24T16:23:39.5081667+01:00" endTime="2025-01-24T16:23:43.5596865+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0b359e31-2c95-4c4d-8b13-0f930f051b95" />
+    <UnitTestResult executionId="36aa3fab-f350-4f76-b7d1-f6da6c04c97b" testId="5ded160c-0864-0313-a532-ef544ebea5a1" testName="TestAPI.TU_EleveMini.TestGetEleveById" computerName="EXN-5CG2149HTR" duration="00:00:00.0396637" startTime="2025-01-24T16:23:43.7954935+01:00" endTime="2025-01-24T16:23:43.8344836+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="36aa3fab-f350-4f76-b7d1-f6da6c04c97b" />
+    <UnitTestResult executionId="78f83029-ad57-4ea3-bc3f-d2453842ae7a" testId="d83cb196-14b5-fe67-4fbe-f5e354bbba2c" testName="TestAPI.TU_EleveAPI.TU_EleveAPI.TestUpdateEleveByName" computerName="EXN-5CG2149HTR" duration="00:00:00.0018615" startTime="2025-01-24T16:23:40.6478191+01:00" endTime="2025-01-24T16:23:40.6478976+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="78f83029-ad57-4ea3-bc3f-d2453842ae7a" />
+    <UnitTestResult executionId="d696e07c-046f-4f2d-b750-d736b54e93de" testId="8be727d5-3948-c065-3b2c-856f52f3a155" testName="TestAPI.TU_EleveAPI.TU_EleveAPI.TestDeleteEleveById" computerName="EXN-5CG2149HTR" duration="00:00:00.8030414" startTime="2025-01-24T16:23:39.5066750+01:00" endTime="2025-01-24T16:23:40.2758566+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d696e07c-046f-4f2d-b750-d736b54e93de" />
+    <UnitTestResult executionId="cac42684-63bc-4cd2-8b6b-fae3c7047f3f" testId="434086e9-9971-af6d-3a80-a4e86b4a1331" testName="TestAPI.TU_EleveMini.TestAddEleve" computerName="EXN-5CG2149HTR" duration="00:00:00.1295910" startTime="2025-01-24T16:23:43.5628939+01:00" endTime="2025-01-24T16:23:43.6909679+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cac42684-63bc-4cd2-8b6b-fae3c7047f3f" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="TestAPI.TU_EleveAPI.TU_EleveAPI.TestGetEleveById" storage="c:\users\nathan.chavaudra\onedrive - magellan partners\bureau\projetexakis\testapi\bin\debug\net8.0\testapi.dll" id="221c4bd2-037b-252f-d662-0438336c3ee3">
+      <Execution id="42c62fa4-7095-4b44-9338-b600d9c9cda9" />
+      <TestMethod codeBase="C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\TestAPI\bin\Debug\net8.0\TestAPI.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="TestAPI.TU_EleveAPI.TU_EleveAPI" name="TestGetEleveById" />
+    </UnitTest>
+    <UnitTest name="TestAPI.TU_EleveMini.TestDeleteEleveById" storage="c:\users\nathan.chavaudra\onedrive - magellan partners\bureau\projetexakis\testapi\bin\debug\net8.0\testapi.dll" id="40d4c40c-1d33-eac6-ce90-20f68a529345">
+      <Execution id="0b359e31-2c95-4c4d-8b13-0f930f051b95" />
+      <TestMethod codeBase="C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\TestAPI\bin\Debug\net8.0\TestAPI.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="TestAPI.TU_EleveMini" name="TestDeleteEleveById" />
+    </UnitTest>
+    <UnitTest name="TestAPI.TU_EleveAPI.TU_EleveAPI.TestUpdateEleveByName" storage="c:\users\nathan.chavaudra\onedrive - magellan partners\bureau\projetexakis\testapi\bin\debug\net8.0\testapi.dll" id="d83cb196-14b5-fe67-4fbe-f5e354bbba2c">
+      <Execution id="78f83029-ad57-4ea3-bc3f-d2453842ae7a" />
+      <TestMethod codeBase="C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\TestAPI\bin\Debug\net8.0\TestAPI.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="TestAPI.TU_EleveAPI.TU_EleveAPI" name="TestUpdateEleveByName" />
+    </UnitTest>
+    <UnitTest name="TestAPI.TU_EleveAPI.TU_EleveAPI.TestAddEleve" storage="c:\users\nathan.chavaudra\onedrive - magellan partners\bureau\projetexakis\testapi\bin\debug\net8.0\testapi.dll" id="2427e8b5-b9b5-d27d-1220-f25778801315">
+      <Execution id="1e36dc0e-41d9-4e42-ba26-b6dcb762697e" />
+      <TestMethod codeBase="C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\TestAPI\bin\Debug\net8.0\TestAPI.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="TestAPI.TU_EleveAPI.TU_EleveAPI" name="TestAddEleve" />
+    </UnitTest>
+    <UnitTest name="TestAPI.TU_EleveMini.TestGetEleveById" storage="c:\users\nathan.chavaudra\onedrive - magellan partners\bureau\projetexakis\testapi\bin\debug\net8.0\testapi.dll" id="5ded160c-0864-0313-a532-ef544ebea5a1">
+      <Execution id="36aa3fab-f350-4f76-b7d1-f6da6c04c97b" />
+      <TestMethod codeBase="C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\TestAPI\bin\Debug\net8.0\TestAPI.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="TestAPI.TU_EleveMini" name="TestGetEleveById" />
+    </UnitTest>
+    <UnitTest name="TestAPI.TU_EleveMini.TestGetEleves" storage="c:\users\nathan.chavaudra\onedrive - magellan partners\bureau\projetexakis\testapi\bin\debug\net8.0\testapi.dll" id="8c315890-c4d0-651b-c2f8-9e0ab80c922a">
+      <Execution id="0d8fa1da-59bb-454c-a6a6-91ea79061318" />
+      <TestMethod codeBase="C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\TestAPI\bin\Debug\net8.0\TestAPI.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="TestAPI.TU_EleveMini" name="TestGetEleves" />
+    </UnitTest>
+    <UnitTest name="TestAPI.TU_EleveMini.TestUpdateEleveByName" storage="c:\users\nathan.chavaudra\onedrive - magellan partners\bureau\projetexakis\testapi\bin\debug\net8.0\testapi.dll" id="842f96d3-1a00-1b07-b2eb-3cb28c687223">
+      <Execution id="08988641-b1fd-48c8-85a5-be96c12b04e5" />
+      <TestMethod codeBase="C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\TestAPI\bin\Debug\net8.0\TestAPI.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="TestAPI.TU_EleveMini" name="TestUpdateEleveByName" />
+    </UnitTest>
+    <UnitTest name="TestAPI.TU_EleveAPI.TU_EleveAPI.TestDeleteEleveById" storage="c:\users\nathan.chavaudra\onedrive - magellan partners\bureau\projetexakis\testapi\bin\debug\net8.0\testapi.dll" id="8be727d5-3948-c065-3b2c-856f52f3a155">
+      <Execution id="d696e07c-046f-4f2d-b750-d736b54e93de" />
+      <TestMethod codeBase="C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\TestAPI\bin\Debug\net8.0\TestAPI.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="TestAPI.TU_EleveAPI.TU_EleveAPI" name="TestDeleteEleveById" />
+    </UnitTest>
+    <UnitTest name="TestAPI.TU_EleveAPI.TU_EleveAPI.TestGetEleves" storage="c:\users\nathan.chavaudra\onedrive - magellan partners\bureau\projetexakis\testapi\bin\debug\net8.0\testapi.dll" id="ee529ac1-80eb-0ca5-09af-bfc0fbb2038a">
+      <Execution id="48a32eff-8431-40b9-840c-6cdb31af45f1" />
+      <TestMethod codeBase="C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\TestAPI\bin\Debug\net8.0\TestAPI.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="TestAPI.TU_EleveAPI.TU_EleveAPI" name="TestGetEleves" />
+    </UnitTest>
+    <UnitTest name="TestAPI.TU_EleveMini.TestAddEleve" storage="c:\users\nathan.chavaudra\onedrive - magellan partners\bureau\projetexakis\testapi\bin\debug\net8.0\testapi.dll" id="434086e9-9971-af6d-3a80-a4e86b4a1331">
+      <Execution id="cac42684-63bc-4cd2-8b6b-fae3c7047f3f" />
+      <TestMethod codeBase="C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\TestAPI\bin\Debug\net8.0\TestAPI.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="TestAPI.TU_EleveMini" name="TestAddEleve" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="221c4bd2-037b-252f-d662-0438336c3ee3" executionId="42c62fa4-7095-4b44-9338-b600d9c9cda9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8c315890-c4d0-651b-c2f8-9e0ab80c922a" executionId="0d8fa1da-59bb-454c-a6a6-91ea79061318" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ee529ac1-80eb-0ca5-09af-bfc0fbb2038a" executionId="48a32eff-8431-40b9-840c-6cdb31af45f1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2427e8b5-b9b5-d27d-1220-f25778801315" executionId="1e36dc0e-41d9-4e42-ba26-b6dcb762697e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="842f96d3-1a00-1b07-b2eb-3cb28c687223" executionId="08988641-b1fd-48c8-85a5-be96c12b04e5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="40d4c40c-1d33-eac6-ce90-20f68a529345" executionId="0b359e31-2c95-4c4d-8b13-0f930f051b95" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5ded160c-0864-0313-a532-ef544ebea5a1" executionId="36aa3fab-f350-4f76-b7d1-f6da6c04c97b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d83cb196-14b5-fe67-4fbe-f5e354bbba2c" executionId="78f83029-ad57-4ea3-bc3f-d2453842ae7a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8be727d5-3948-c065-3b2c-856f52f3a155" executionId="d696e07c-046f-4f2d-b750-d736b54e93de" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="434086e9-9971-af6d-3a80-a4e86b4a1331" executionId="cac42684-63bc-4cd2-8b6b-fae3c7047f3f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Les résultats ne figurent pas dans une liste" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Tous les résultats chargés" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="10" executed="10" passed="10" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>Collecte de données : Logging DataCollector Diagnostics in file: C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\TestAPI\log.datacollector.25-01-24_16-23-33_73653_5.txt&#xD;
+Journalisation des diagnostics TestHost dans le fichier : C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\TestAPI\log.host.25-01-24_16-23-34_87791_5.txt&#xD;
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.0.1+f8675c32e5 (64-bit .NET 8.0.11)&#xD;
+[xUnit.net 00:00:01.92]   Discovering: TestAPI&#xD;
+[xUnit.net 00:00:01.96]   Discovered:  TestAPI&#xD;
+[xUnit.net 00:00:01.97]   Starting:    TestAPI&#xD;
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]&#xD;
+      Failed to determine the https port for redirect.&#xD;
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]&#xD;
+      Failed to determine the https port for redirect.&#xD;
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]&#xD;
+      Failed to determine the https port for redirect.&#xD;
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]&#xD;
+      Failed to determine the https port for redirect.&#xD;
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]&#xD;
+      Failed to determine the https port for redirect.&#xD;
+[xUnit.net 00:00:06.37]   Finished:    TestAPI&#xD;
+</StdOut>
+    </Output>
+    <CollectorDataEntries>
+      <Collector agentName="EXN-5CG2149HTR" uri="datacollector://microsoft/CoverletCodeCoverage/1.0" collectorDisplayName="XPlat code coverage">
+        <UriAttachments>
+          <UriAttachment>
+            <A href="EXN-5CG2149HTR\coverage.cobertura.xml"></A>
+          </UriAttachment>
+        </UriAttachments>
+      </Collector>
+    </CollectorDataEntries>
+  </ResultSummary>
+</TestRun>
