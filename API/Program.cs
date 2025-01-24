@@ -29,7 +29,7 @@ builder.Services.AddCors(options =>
                               .AllowAnyHeader() // Permettre n'importe quel en-t?te
                               .AllowAnyMethod()); // Permettre n'importe quelle m?thode HTTP (GET, POST, etc.)
 });
-builder.Services.AddScoped<EleveServiceAPI>();
+builder.Services.AddScoped<IEleveServiceAPI, EleveServiceAPI>();
 // Ajout des services de contr?leurs ? l'application
 builder.Services.AddControllers();
 
