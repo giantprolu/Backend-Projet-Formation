@@ -49,7 +49,9 @@ steps:
     command: 'test'
     projects: '$(Build.SourcesDirectory)/TestAPI/TestAPI.csproj'
     arguments: '--configuration $(buildConfiguration) --logger trx --collect:"XPlat Code Coverage" --diag:log.txt'
-
+- script: |
+    ls -la $(Build.ArtifactStagingDirectory)
+  displayName: 'List files in staging directory'
 - task: PublishCodeCoverageResults@2
   inputs:
     summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'  
