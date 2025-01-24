@@ -13,7 +13,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  zipFileName: 'projetEPS.zip' 
+
 
 steps:
 - task: NuGetToolInstaller@1
@@ -37,32 +37,38 @@ steps:
   inputs:
     command: 'restore'
     projects: '$(solution)'
+  displayName: 'Restore'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
     projects: '$(solution)'
     arguments: '--configuration $(buildConfiguration)'
+  displayName: 'Build'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
     projects: '$(Build.SourcesDirectory)/TestAPI/TestAPI.csproj'
     arguments: '--configuration $(buildConfiguration) --logger trx --collect:"XPlat Code Coverage"'
-
+  displayName: 'Test'
+- script: |
+    reportgenerator -reports:$(Agent.TempDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.ArtifactStagingDirectory)/CoverageReport
+  displayName: 'Generate coverage report'
+- script: |
+    echo "Listing coverage report files..."
+    ls -R $(Build.ArtifactStagingDirectory)/CoverageReport
+  displayName: 'List Coverage Report Files'
 - task: PublishCodeCoverageResults@2
   inputs:
     summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'  
-- script: |
-    echo "Displaying log file content..."
-    cat $(Build.SourcesDirectory)/log.txt  # Lire log.txt pour les erreurs.
-  displayName: 'Display Test Log'
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     zipAfterPublish: true
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    
+  displayName: 'ZIP'
 
 
 - task: PublishPipelineArtifact@1
