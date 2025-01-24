@@ -53,10 +53,7 @@ steps:
 - task: PublishCodeCoverageResults@2
   inputs:
     summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'  
-- script: |
-    echo "Before publish:"
-    ls -la $(Build.ArtifactStagingDirectory)
-  displayName: 'List files before publish'
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
@@ -64,23 +61,13 @@ steps:
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     
 
-- script: |
-    echo "After publish:"
-    ls -la $(Build.ArtifactStagingDirectory)
-  displayName: 'List files after publish'
-
-- task: ArchiveFiles@2
+- task: PublishPipelineArtifact@1
   inputs:
-    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/EPS.zip'
-    replaceExistingArchive: true
-
+    targetPath: '$(Build.ArtifactStagingDirectory)/API.zip'
+    artifactName: 'API'
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/EPS.zip' 
-    artifactName: 'EPS'
-
+    targetPath: '$(Build.ArtifactStagingDirectory)/Minimal.zip'
+    artifactName: 'Minimal'
     
