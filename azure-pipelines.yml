@@ -54,7 +54,7 @@ steps:
   displayName: 'Test'
 
 - script: |
-    reportgenerator -reports:$(Agent.TempDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.ArtifactStagingDirectory)/CoverageReport
+    reportgenerator -reports:$(solution)/TestAPI/TestResesults/**/coverage.cobertura.xml -targetdir:$(Build.ArtifactStagingDirectory)/CoverageReport
   displayName: 'Generate coverage report'
 
 - script: |
