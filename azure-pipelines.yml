@@ -52,7 +52,8 @@ steps:
     projects: '$(Build.SourcesDirectory)/TestAPI/TestAPI.csproj'
     arguments: '--configuration $(buildConfiguration) --logger trx --collect:"XPlat Code Coverage" --diag:log.txt'
   displayName: 'Test'
-
+- script: 'ls -R /home/vsts/work/_temp'
+  displayName: 'List temporary files'
 - task: PublishCodeCoverageResults@2
   inputs:
     summaryFileLocation: '/home/vsts/work/_temp/**/coverage.cobertura.xml'  
