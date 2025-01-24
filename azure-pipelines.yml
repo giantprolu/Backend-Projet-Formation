@@ -49,19 +49,33 @@ steps:
     command: 'test'
     projects: '$(Build.SourcesDirectory)/TestAPI/TestAPI.csproj'
     arguments: '--configuration $(buildConfiguration) --logger trx --collect:"XPlat Code Coverage" --diag:log.txt'
-- script: |
-    ls -la $(Build.ArtifactStagingDirectory)
-  displayName: 'List files in staging directory'
+
 - task: PublishCodeCoverageResults@2
   inputs:
     summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'  
-
+- script: |
+    echo "Before publish:"
+    ls -la $(Build.ArtifactStagingDirectory)
+  displayName: 'List files before publish'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     zipAfterPublish: true
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     
+
+- script: |
+    echo "After publish:"
+    ls -la $(Build.ArtifactStagingDirectory)
+  displayName: 'List files after publish'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/EPS.zip'
+    replaceExistingArchive: true
 
 
 - task: PublishPipelineArtifact@1
