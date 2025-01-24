@@ -51,20 +51,23 @@ steps:
     arguments: '--configuration $(buildConfiguration) --logger trx --collect:"XPlat Code Coverage" --diag:log.txt'
 
 - script: |
+    echo "Listing coverage files..."
+    ls -R $(Agent.TempDirectory) # Lister les fichiers de couverture générés
+  displayName: 'List Coverage Files'
+
+- script: |
     reportgenerator -reports:$(Agent.TempDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.ArtifactStagingDirectory)/CoverageReport
   displayName: 'Generate coverage report'
 
 - task: PublishCodeCoverageResults@2
   inputs:
-    summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'  
-
+    summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     zipAfterPublish: true
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    
 
 - task: PublishPipelineArtifact@1
   inputs:
@@ -75,4 +78,3 @@ steps:
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)/Minimal.zip'
     artifactName: 'Minimal'
-    
