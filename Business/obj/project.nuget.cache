@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZpG6avfPP5Y=",
+  "dgSpecHash": "vy+DYlJKkCk=",
   "success": true,
   "projectFilePath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Business\\Business.csproj",
   "expectedPackageFiles": [
@@ -60,7 +60,10 @@
     "C:\\Users\\nathan.chavaudra\\.nuget\\packages\\system.text.encodings.web\\9.0.1\\system.text.encodings.web.9.0.1.nupkg.sha512",
     "C:\\Users\\nathan.chavaudra\\.nuget\\packages\\system.text.json\\9.0.1\\system.text.json.9.0.1.nupkg.sha512",
     "C:\\Users\\nathan.chavaudra\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\nathan.chavaudra\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
+    "C:\\Users\\nathan.chavaudra\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
+    "C:\\Users\\nathan.chavaudra\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.12\\microsoft.windowsdesktop.app.ref.8.0.12.nupkg.sha512",
+    "C:\\Users\\nathan.chavaudra\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.12\\microsoft.netcore.app.ref.8.0.12.nupkg.sha512",
+    "C:\\Users\\nathan.chavaudra\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.12\\microsoft.aspnetcore.app.ref.8.0.12.nupkg.sha512"
   ],
   "logs": []
 }

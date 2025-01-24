@@ -168,10 +168,10 @@ C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Minim
 C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Minimal\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Minimal.props
 C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Minimal\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Minimal.props
 C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Minimal\obj\Debug\net8.0\staticwebassets.pack.json
-C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Minimal\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Minimal\obj\Debug\net8.0\Minimal.csproj.Up2Date
 C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Minimal\obj\Debug\net8.0\Minimal.dll
 C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Minimal\obj\Debug\net8.0\refint\Minimal.dll
 C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Minimal\obj\Debug\net8.0\Minimal.pdb
 C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Minimal\obj\Debug\net8.0\Minimal.genruntimeconfig.cache
 C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Minimal\obj\Debug\net8.0\ref\Minimal.dll
+C:\Users\nathan.chavaudra\OneDrive - Magellan Partners\Bureau\ProjetExakis\Minimal\obj\Debug\net8.0\Minimal.sourcelink.json

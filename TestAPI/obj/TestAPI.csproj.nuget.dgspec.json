@@ -4,14 +4,364 @@
     "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\TestAPI\\TestAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\TestAPI\\TestAPI.csproj": {
+    "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\TestAPI\\TestAPI.csproj",
-        "projectName": "TestAPI",
-        "projectPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\TestAPI\\TestAPI.csproj",
+        "projectUniqueName": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\API\\API.csproj",
+        "projectName": "API",
+        "projectPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\API\\API.csproj",
         "packagesPath": "C:\\Users\\nathan.chavaudra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\TestAPI\\obj\\",
+        "outputPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\API\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\nathan.chavaudra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Business\\Business.csproj": {
+                "projectPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Business\\Business.csproj"
+              },
+              "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Models\\Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
+            "Microsoft.TestPlatform": {
+              "target": "Package",
+              "version": "[17.12.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.72, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[7.2.0, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[7.2.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.9.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Business\\Business.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Business\\Business.csproj",
+        "projectName": "Business",
+        "projectPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Business\\Business.csproj",
+        "packagesPath": "C:\\Users\\nathan.chavaudra\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Business\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\nathan.chavaudra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Models\\Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
+            "Microsoft.TestPlatform": {
+              "target": "Package",
+              "version": "[17.12.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Minimal\\Minimal.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Minimal\\Minimal.csproj",
+        "projectName": "Minimal",
+        "projectPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Minimal\\Minimal.csproj",
+        "packagesPath": "C:\\Users\\nathan.chavaudra\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Minimal\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\nathan.chavaudra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Business\\Business.csproj": {
+                "projectPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Business\\Business.csproj"
+              },
+              "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Models\\Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[7.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Models\\Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Models\\Models.csproj",
+        "projectName": "Models",
+        "projectPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Models\\Models.csproj",
+        "packagesPath": "C:\\Users\\nathan.chavaudra\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -51,6 +401,117 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
+            "Microsoft.TestPlatform": {
+              "target": "Package",
+              "version": "[17.12.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\TestAPI\\TestAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\TestAPI\\TestAPI.csproj",
+        "projectName": "TestAPI",
+        "projectPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\TestAPI\\TestAPI.csproj",
+        "packagesPath": "C:\\Users\\nathan.chavaudra\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\TestAPI\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\nathan.chavaudra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\API\\API.csproj": {
+                "projectPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\API\\API.csproj"
+              },
+              "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Business\\Business.csproj": {
+                "projectPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Business\\Business.csproj"
+              },
+              "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Minimal\\Minimal.csproj": {
+                "projectPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Minimal\\Minimal.csproj"
+              },
+              "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\nathan.chavaudra\\OneDrive - Magellan Partners\\Bureau\\ProjetExakis\\Models\\Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Testing": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.12.0, )"
@@ -110,7 +571,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
