@@ -50,15 +50,18 @@ steps:
   inputs:
     command: 'test'
     projects: '$(Build.SourcesDirectory)/TestAPI/TestAPI.csproj'
-    arguments: '--configuration $(buildConfiguration) --logger trx --collect:"XPlat Code Coverage"'
+    arguments: '--configuration $(buildConfiguration) --logger trx --collect:"XPlat Code Coverage" --diag:log.txt'
   displayName: 'Test'
+
 - script: |
     reportgenerator -reports:$(Agent.TempDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.ArtifactStagingDirectory)/CoverageReport
   displayName: 'Generate coverage report'
+
 - script: |
     echo "Listing coverage report files..."
     ls -R $(Build.ArtifactStagingDirectory)/CoverageReport
   displayName: 'List Coverage Report Files'
+
 - task: PublishCodeCoverageResults@2
   inputs:
     summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'  
