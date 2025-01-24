@@ -15,7 +15,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.12" />
+<<<<<<< HEAD
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.12" />
+=======
+>>>>>>> 55c861f0a44bbcd36393bb9ae346af1a06927d5f
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="Microsoft.TestPlatform" Version="17.12.0" />
     <PackageReference Include="Moq" Version="4.20.72" />
@@ -34,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <ProjectReference Include="..\API\API.csproj" />
     <ProjectReference Include="..\Business\Business.csproj" />
     <ProjectReference Include="..\Minimal\Minimal.csproj" />
@@ -41,6 +45,8 @@
   </ItemGroup>
 
   <ItemGroup>
+=======
+>>>>>>> 55c861f0a44bbcd36393bb9ae346af1a06927d5f
     <Using Include="Xunit" />
   </ItemGroup>
 

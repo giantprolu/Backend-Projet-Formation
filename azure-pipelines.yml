@@ -13,7 +13,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  zipFileName: 'projetEPS.zip' 
+
 
 steps:
 - task: NuGetToolInstaller@1
@@ -37,18 +37,22 @@ steps:
   inputs:
     command: 'restore'
     projects: '$(solution)'
+  displayName: 'Restore'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
     projects: '$(solution)'
     arguments: '--configuration $(buildConfiguration)'
+  displayName: 'Build'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
     projects: '$(Build.SourcesDirectory)/TestAPI/TestAPI.csproj'
-    arguments: '--configuration $(buildConfiguration) --logger trx --collect:"XPlat Code Coverage" --diag:log.txt'
+    arguments: '--configuration $(buildConfiguration) --logger trx --collect:"XPlat Code Coverage"'
+  displayName: 'Test'
+
 
 - task: PublishCodeCoverageResults@2
   inputs:
@@ -59,12 +63,16 @@ steps:
     command: 'publish'
     zipAfterPublish: true
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    
+  displayName: 'ZIP'
 
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/EPS.zip' 
-    artifactName: 'EPS'
+    targetPath: '$(Build.ArtifactStagingDirectory)/API.zip'
+    artifactName: 'API'
 
-    
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/Minimal.zip'
+    artifactName: 'Minimal'
+
