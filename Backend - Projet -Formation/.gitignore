@@ -2,5 +2,5 @@
 .vsdix/
 *.vs/
 *.vsdix/
-**/bin/
-**/obj/
+**bin/
+**obj/
