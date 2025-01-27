@@ -47,7 +47,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
-    projects: '$(Build.SourcesDirectory)/Backend - Projet -Formation/TestAPI/TestAPI.csproj'
+    projects: '$(Build.SourcesDirectory)/TestAPI/TestAPI.csproj'
     arguments: '--configuration $(buildConfiguration) --logger trx --collect:"XPlat Code Coverage" --diag:log.txt'
 
 - task: PublishCodeCoverageResults@2
