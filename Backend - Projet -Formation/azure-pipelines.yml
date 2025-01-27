@@ -59,12 +59,16 @@ steps:
     command: 'publish'
     zipAfterPublish: true
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    
-
+  displayName: 'ZIP'
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/EPS.zip' 
-    artifactName: 'EPS'
+    targetPath: '$(Build.ArtifactStagingDirectory)/API.zip'
+    artifactName: 'API'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/Minimal.zip'
+    artifactName: 'Minimal'
 
     
