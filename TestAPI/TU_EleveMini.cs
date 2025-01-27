@@ -22,6 +22,11 @@ namespace TestAPI
             var mockEleveServices = new Mock<IEleveServiceMini>();
             return mockEleveServices;
         }
+        private Mock<ISchoolServiceMini> CreateMockSchoolServiceMini()
+        {
+            var mockSchoolServices = new Mock<ISchoolServiceMini>();
+            return mockSchoolServices;
+        }
 
         [Fact]
         public async Task TestGetEleves()
@@ -176,6 +181,37 @@ namespace TestAPI
 
             // Assert
             Assert.Equal(System.Net.HttpStatusCode.NoContent, response.StatusCode);
+        }
+
+        [Fact]
+        //test sur GetListSchoolsAsync
+        public async Task TestGetListSchools()
+        {
+            // Arrange
+            var mockSchoolServices = CreateMockSchoolServiceMini();
+            mockSchoolServices.Setup(s => s.GetListSchoolsAsync()).ReturnsAsync(new List<SchoolMini>
+            {
+                new SchoolMini { Nom = "Ecole1", NmbEleve = 10 },
+                new SchoolMini { Nom = "Ecole2", NmbEleve = 20 }
+            });
+            var client = _factory.WithWebHostBuilder(builder =>
+            {
+                builder.ConfigureServices(services =>
+                {
+                    services.AddScoped(_ => mockSchoolServices.Object);
+                });
+            }).CreateClient();
+            // Act
+            var response = await client.GetAsync("/ListSchools");
+            response.EnsureSuccessStatusCode();
+            var schools = await response.Content.ReadFromJsonAsync<List<SchoolMini>>();
+            // Assert
+            Assert.NotNull(schools);
+            Assert.Equal(2, schools.Count);
+            Assert.Equal("Ecole1", schools[0].Nom);
+            Assert.Equal(10, schools[0].NmbEleve);
+            Assert.Equal("Ecole2", schools[1].Nom);
+            Assert.Equal(20, schools[1].NmbEleve);
         }
     }
 }
