@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Models.ModelMinimal;
+using Business.Profile;
+using Business.Models;
 
 namespace Business.ServicesMinimal
 {
@@ -17,9 +19,10 @@ namespace Business.ServicesMinimal
             _context = context;
         }
 
-        public async Task<List<SchoolMini>> GetListSchoolsAsync()
+        public async Task<List<School>> GetListSchoolsAsync()
         {
-            return await _context.Schools.ToListAsync();
+            var schoolsMini = await _context.Schools.ToListAsync();
+            return schoolsMini.Select(s => s.ToSchool()).ToList();
         }
     }
 }

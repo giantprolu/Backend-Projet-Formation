@@ -12,7 +12,7 @@ namespace Business.Profile
     [Mapper]
     public static partial class ProfileEleve
     {
-        public static Eleve ToEleve(this EleveMini eleve)
+        public static Eleve ToEleve(this EleveMini eleve, bool includeSchool = true)
         {
             return new Eleve
             {
@@ -22,7 +22,21 @@ namespace Business.Profile
                 Age = eleve.Age,
                 Sexe = eleve.Sexe,
                 SchoolId = eleve.SchoolId,
-                Schools = eleve.Schools?.ToSchool()
+                Schools = includeSchool ? eleve.Schools?.ToSchool(false) : null
+            };
+        }
+    
+        public static EleveMini ToEleveMini(this Eleve eleve, bool includeSchool = true)
+        {
+            return new EleveMini
+            {
+                Id = eleve.Id,
+                Nom = eleve.Nom,
+                Prenom = eleve.Prenom,
+                Age = eleve.Age,
+                Sexe = eleve.Sexe,
+                SchoolId = eleve.SchoolId,
+                Schools = includeSchool ? eleve.Schools?.ToSchoolMini(false) : null
             };
         }
     }

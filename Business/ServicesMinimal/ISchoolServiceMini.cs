@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Models.ModelMinimal;
-
+using Business.Models;
 
 namespace Business.ServicesMinimal
 {
     public interface ISchoolServiceMini
     {
-        Task<List<SchoolMini>> GetListSchoolsAsync();
+        Task<List<School>> GetListSchoolsAsync();
     }
 }

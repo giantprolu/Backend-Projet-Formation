@@ -6,7 +6,8 @@ using Business.ServicesMinimal;
 using Minimal.Class;
 using System.Reflection;
 using System.Runtime.InteropServices.ObjectiveC;
-
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Logging;
 
 public class Program
 {
@@ -37,10 +38,25 @@ public class Program
         });
         builder.Services.AddScoped<IEleveServiceMini, EleveServiceMini>();
         builder.Services.AddScoped<ISchoolServiceMini, SchoolServiceMini>();
-
+        builder.Services.AddLogging();
 
         var app = builder.Build();
 
+        // Ajouter un middleware global pour capturer les exceptions
+        app.Use(async (context, next) =>
+        {
+            try
+            {
+                await next.Invoke();
+            }
+            catch (Exception ex)
+            {
+                var logger = app.Services.GetRequiredService<ILogger<Program>>();
+                logger.LogError(ex, "An unhandled exception has occurred.");
+                context.Response.StatusCode = 500;
+                await context.Response.WriteAsync("An unhandled exception has occurred.");
+            }
+        });
 
         if (app.Environment.IsDevelopment())
         {

@@ -1,5 +1,7 @@
 ﻿using Models.ModelMinimal;
 using Microsoft.EntityFrameworkCore;
+using Business.Profile;
+using Business.Models;
 
 namespace Business.ServicesMinimal
 {
@@ -9,22 +11,24 @@ namespace Business.ServicesMinimal
 
         public EleveServiceMini(EleveContextMini context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<List<EleveMini>> GetListEleveAsync()
+        public async Task<List<Eleve>> GetListEleveAsync()
         {
-            return await _context.Eleves.Include(e => e.Schools).ToListAsync();
+            var elevesMini = await _context.Eleves.Include(e => e.Schools).ToListAsync();
+            return elevesMini.Select(e => e.ToEleve()).ToList();
         }
 
-        public async Task<EleveMini?> GetEleveByIdAsync(int id)
+        public async Task<Eleve?> GetEleveByIdAsync(int id)
         {
-            return await _context.Eleves
+            var eleveMini = await _context.Eleves
                 .Include(e => e.Schools)
                 .FirstOrDefaultAsync(e => e.Id == id);
+            return eleveMini?.ToEleve();
         }
 
-        public async Task<EleveMini?> PostEleveAsync(EleveMini eleve)
+        public async Task<Eleve?> PostEleveAsync(Eleve eleve)
         {
             var school = await _context.Schools.FirstOrDefaultAsync();
             if (school == null)
@@ -32,12 +36,15 @@ namespace Business.ServicesMinimal
                 return null;
             }
 
-            eleve.SchoolId = school.Id;
-            _context.Eleves.Add(eleve);
+            var eleveMini = eleve.ToEleveMini();
+            eleveMini.SchoolId = school.Id;
+            _context.Eleves.Add(eleveMini);
             await _context.SaveChangesAsync();
 
-            return await _context.Eleves.Include(e => e.Schools).FirstOrDefaultAsync(e => e.Id == eleve.Id);
+            var createdEleveMini = await _context.Eleves.Include(e => e.Schools).FirstOrDefaultAsync(e => e.Id == eleveMini.Id);
+            return createdEleveMini?.ToEleve();
         }
+
         public async Task<bool> DeleteEleveAsync(int id)
         {
             var eleve = await _context.Eleves.FindAsync(id);
@@ -50,25 +57,26 @@ namespace Business.ServicesMinimal
             await _context.SaveChangesAsync();
             return true;
         }
-        public async Task<EleveMini?> UpdateEleveByIdAsync(int id, EleveMini updatedEleve)
+
+        public async Task<Eleve?> UpdateEleveByIdAsync(int id, Eleve updatedEleve)
         {
-            var eleve = await _context.Eleves.Include(e => e.Schools).FirstOrDefaultAsync(e => e.Id == id);
-            if (eleve == null)
+            var eleveMini = await _context.Eleves.Include(e => e.Schools).FirstOrDefaultAsync(e => e.Id == id);
+            if (eleveMini == null)
             {
                 return null;
             }
 
-            eleve.Nom = updatedEleve.Nom;
-            eleve.Prenom = updatedEleve.Prenom;
-            eleve.Age = updatedEleve.Age;
-            eleve.Sexe = updatedEleve.Sexe;
-            eleve.SchoolId = updatedEleve.SchoolId;
-            eleve.Schools = updatedEleve.Schools;
+            eleveMini.Nom = updatedEleve.Nom;
+            eleveMini.Prenom = updatedEleve.Prenom;
+            eleveMini.Age = updatedEleve.Age;
+            eleveMini.Sexe = updatedEleve.Sexe;
+            eleveMini.SchoolId = updatedEleve.SchoolId;
+            eleveMini.Schools = updatedEleve.Schools?.ToSchoolMini();
 
-            _context.Entry(eleve).State = EntityState.Modified;
+            _context.Entry(eleveMini).State = EntityState.Modified;
 
             await _context.SaveChangesAsync();
-            return eleve;
+            return eleveMini.ToEleve();
         }
     }
 }

@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Business.Models;
+using Models.ModelMinimal;
+using Business.Profile;
+
 
 namespace Minimal.Class
 {
@@ -45,8 +48,9 @@ namespace Minimal.Class
             return eleve is not null ? Results.Ok(eleve) : Results.NotFound($"Élève avec l'ID {id} non trouvé.");
         }
 
-        static async Task<IResult> HandlePostEleveAsync(IEleveServiceMini service, Models.ModelMinimal.EleveMini eleve)
+        static async Task<IResult> HandlePostEleveAsync(IEleveServiceMini service, Models.ModelMinimal.EleveMini eleveMini)
         {
+            var eleve = eleveMini.ToEleve();
             var result = await service.PostEleveAsync(eleve);
             return result switch
             {
