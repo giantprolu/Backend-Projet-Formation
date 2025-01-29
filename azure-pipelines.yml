@@ -37,19 +37,19 @@ steps:
   inputs:
     command: 'restore'
     projects: '$(solution)'
-
+  displayName: 'restore'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
     projects: '$(solution)'
     arguments: '--configuration $(buildConfiguration)'
-
+  displayName: 'build'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
     projects: '$(Build.SourcesDirectory)/TestAPI/TestAPI.csproj'
     arguments: '--configuration $(buildConfiguration) --logger trx --collect:"XPlat Code Coverage" --diag:log.txt'
-
+  displayName: 'test'
 - task: PublishCodeCoverageResults@2
   inputs:
     summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'  
