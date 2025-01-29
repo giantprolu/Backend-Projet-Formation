@@ -3,11 +3,16 @@ using Models.ModelMinimal;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
 using Business.ServicesMinimal;
+using Minimal.Class;
+using System.Reflection;
+using System.Runtime.InteropServices.ObjectiveC;
+
 
 public class Program
 {
     public static void Main(string[] args)
     {
+        
         var builder = WebApplication.CreateBuilder(args);
         builder.Services.AddDbContext<EleveContextMini>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -33,7 +38,9 @@ public class Program
         builder.Services.AddScoped<IEleveServiceMini, EleveServiceMini>();
         builder.Services.AddScoped<ISchoolServiceMini, SchoolServiceMini>();
 
+
         var app = builder.Build();
+
 
         if (app.Environment.IsDevelopment())
         {
@@ -42,94 +49,31 @@ public class Program
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Minimal API v1");
             });
+            
         }
+
+        var interfaceType = typeof(IAddRoute);
+        var implementingTypes = Assembly.GetExecutingAssembly().GetTypes()
+            .Where(t => interfaceType.IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract);
+
+        foreach (var type in implementingTypes)
+        {
+            var route = Activator.CreateInstance(type) as IAddRoute;
+            route?.MapRoutes(app);
+        }
+
+        //var routeBuilderEleve = new EleveRoute();
+        //routeBuilderEleve.AddRoutes(app);
+
+        //var routeBuilderSchool = new SchoolRoute();
+        //routeBuilderSchool.AddRoutes(app);
 
         app.UseHttpsRedirection();
         app.UseCors("AllowAngularOrigins");
         app.UseAuthorization();
-
-        app.MapGet("/ListEleve", HandleGetListEleveAsync)
-            .Produces<List<Eleve>>()
-            .Produces(StatusCodes.Status204NoContent);
-
-        app.MapGet("/eleve/{id}", HandleGetEleveByIdAsync)
-            .Produces<Eleve>()
-            .Produces(StatusCodes.Status404NotFound);
-
-        app.MapPost("/eleve", HandlePostEleveAsync)
-            .Produces<Eleve>(StatusCodes.Status201Created)
-            .Produces(StatusCodes.Status404NotFound);
-
-        app.MapDelete("/eleve/{id}", HandleDeleteEleveAsync)
-            .Produces(StatusCodes.Status204NoContent)
-            .Produces(StatusCodes.Status404NotFound);
-
-        app.MapPut("/eleve/updateByName/{nom}", HandleUpdateEleveByNameAsync)
-            .Produces<Eleve>()
-            .Produces(StatusCodes.Status404NotFound);
-
-        app.MapGet("/ListSchools", HandleGetListSchoolsAsync)
-            .Produces<List<School>>()
-            .Produces(StatusCodes.Status204NoContent);
-
+        app.UseRouting();
+        
         app.Run();
     }
 
-    static async Task<IResult> HandleGetListEleveAsync(IEleveServiceMini service)
-    {
-        var eleves = await service.GetListEleveAsync();
-        return eleves.Count > 0 ? Results.Ok(eleves) : Results.NoContent();
-    }
-
-    static async Task<IResult> HandleGetEleveByIdAsync(IEleveServiceMini service, int id)
-    {
-        var eleve = await service.GetEleveByIdAsync(id);
-        return eleve is not null ? Results.Ok(eleve) : Results.NotFound($"Élève avec l'ID {id} non trouvé.");
-    }
-
-    static async Task<IResult> HandlePostEleveAsync(IEleveServiceMini service, Models.ModelMinimal.EleveMini eleve, string schoolName)
-    {
-        var result = await service.PostEleveAsync(eleve, schoolName);
-        return result switch
-        {
-            not null => Results.Created($"/eleve/{result.Id}", result),
-            _ => Results.NotFound("École non trouvée.")
-        };
-    }
-
-    static async Task<IResult> HandleDeleteEleveAsync(IEleveServiceMini service, int id)
-    {
-        var success = await service.DeleteEleveAsync(id);
-        return success ? Results.NoContent() : Results.NotFound($"Élève avec l'ID {id} non trouvé.");
-    }
-
-    static async Task<IResult> HandleUpdateEleveByNameAsync(IEleveServiceMini service, string nom, Models.ModelMinimal.EleveMini updatedEleve, string newSchoolName)
-    {
-        var eleve = await service.UpdateEleveByNameAsync(nom, updatedEleve, newSchoolName);
-        return eleve is not null ? Results.Ok(eleve) : Results.NotFound($"Élève avec le nom {nom} non trouvé ou école {newSchoolName} non trouvée.");
-    }
-
-    static async Task<IResult> HandleGetListSchoolsAsync(ISchoolServiceMini service)
-    {
-        var schools = await service.GetListSchoolsAsync();
-        return schools.Count > 0 ? Results.Ok(schools) : Results.NoContent();
-    }
-}
-
-public record Eleve
-{
-    public int Id { get; set; }
-    public required string Nom { get; set; }
-    public required string Prenom { get; set; }
-    public int Age { get; set; }
-    public required string Sexe { get; set; }
-    public int SchoolId { get; set; }
-    public required School Schools { get; set; }
-}
-
-public record School
-{
-    public int Id { get; set; }
-    public required string Nom { get; set; }
-    public int NmbEleve { get; set; }
 }

@@ -131,7 +131,7 @@ namespace TestAPI
             // Arrange
             var mockEleveServices = CreateMockEleveServiceMini();
             var updatedEleve = new EleveMini { Nom = "Dupont", Prenom = "Jean-Paul", Age = 13, Sexe = true };
-            mockEleveServices.Setup(s => s.UpdateEleveByNameAsync(It.IsAny<string>(), It.IsAny<EleveMini>(), It.IsAny<string>())).ReturnsAsync(updatedEleve);
+            mockEleveServices.Setup(s => s.UpdateEleveByIdAsync(It.IsAny<int>(), It.IsAny<EleveMini>(), It.IsAny<string>())).ReturnsAsync(updatedEleve);
 
             var client = _factory.WithWebHostBuilder(builder =>
             {

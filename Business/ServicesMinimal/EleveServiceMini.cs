@@ -57,9 +57,9 @@ namespace Business.ServicesMinimal
             return true;
         }
 
-        public async Task<EleveMini?> UpdateEleveByNameAsync(string nom, EleveMini updatedEleve, string newSchoolName)
+        public async Task<EleveMini?> UpdateEleveByIdAsync(int Id, EleveMini updatedEleve, string newSchoolName)
         {
-            var eleve = await _context.Eleves.Include(e => e.Schools).FirstOrDefaultAsync(e => e.Nom == nom);
+            var eleve = await _context.Eleves.Include(e => e.Schools).FirstOrDefaultAsync(e => e.Id == Id);
             if (eleve == null)
             {
                 return null;
@@ -88,6 +88,7 @@ namespace Business.ServicesMinimal
             await _context.SaveChangesAsync();
             return eleve;
         }
+
 
         public async Task<List<SchoolMini>> GetListSchoolsAsync()
         {

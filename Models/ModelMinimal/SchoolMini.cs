@@ -10,7 +10,7 @@ namespace Models.ModelMinimal
     {
         public int Id { get; set; }
         public required string Nom { get; set; }
-        public int NmbEleve { get; set; }
+        public required int NmbEleve { get; set; }
         public ICollection<EleveMini>? Eleves { get; set; }
     }
 }

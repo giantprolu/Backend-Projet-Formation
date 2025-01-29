@@ -13,6 +13,6 @@ namespace Business.ServicesMinimal
         Task<EleveMini?> GetEleveByIdAsync(int id);
         Task<EleveMini?> PostEleveAsync(EleveMini eleve, string schoolName);
         Task<bool> DeleteEleveAsync(int id);
-        Task<EleveMini?> UpdateEleveByNameAsync(string nom, EleveMini updatedEleve, string newSchoolName);
+        Task<EleveMini?> UpdateEleveByIdAsync(int Id, EleveMini updatedEleve, string newSchoolName);
     }
 }

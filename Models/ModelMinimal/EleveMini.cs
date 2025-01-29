@@ -19,14 +19,13 @@ namespace Models.ModelMinimal
         public required string Prenom { get; set; }
 
         // Propriété Age de type entier, représente l'âge de l'élève
-        public int Age { get; set; }
+        public required int Age { get; set; }
 
-        public bool Sexe { get; set; }
+        public required bool Sexe { get; set; }
 
         // Propriété SchoolId pour la clé étrangère
         public int SchoolId { get; set; }
 
-        [JsonIgnore]
-        public SchoolMini? Schools { get; set; }
+        public virtual SchoolMini? Schools { get; set; }
     }
 }
