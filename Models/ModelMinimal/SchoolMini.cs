@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Riok.Mapperly.Abstractions;
 
 namespace Models.ModelMinimal
 {
@@ -11,6 +12,6 @@ namespace Models.ModelMinimal
         public int Id { get; set; }
         public string Nom { get; set; }
         public int NmbEleve { get; set; }
-        public ICollection<EleveMini>? Eleves { get; set; }
+        internal ICollection<EleveMini>? Eleves { get; set; }
     }
 }
