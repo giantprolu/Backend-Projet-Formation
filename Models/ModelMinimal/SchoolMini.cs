@@ -9,8 +9,8 @@ namespace Models.ModelMinimal
     public class SchoolMini
     {
         public int Id { get; set; }
-        public required string Nom { get; set; }
-        public required int NmbEleve { get; set; }
+        public string Nom { get; set; }
+        public int NmbEleve { get; set; }
         public ICollection<EleveMini>? Eleves { get; set; }
     }
 }

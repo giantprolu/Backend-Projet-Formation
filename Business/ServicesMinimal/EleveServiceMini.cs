@@ -71,7 +71,6 @@ namespace Business.ServicesMinimal
             eleveMini.Age = updatedEleve.Age;
             eleveMini.Sexe = updatedEleve.Sexe;
             eleveMini.SchoolId = updatedEleve.SchoolId;
-            eleveMini.Schools = updatedEleve.Schools?.ToSchoolMini();
 
             _context.Entry(eleveMini).State = EntityState.Modified;
 

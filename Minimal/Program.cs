@@ -42,22 +42,6 @@ public class Program
 
         var app = builder.Build();
 
-        // Ajouter un middleware global pour capturer les exceptions
-        app.Use(async (context, next) =>
-        {
-            try
-            {
-                await next.Invoke();
-            }
-            catch (Exception ex)
-            {
-                var logger = app.Services.GetRequiredService<ILogger<Program>>();
-                logger.LogError(ex, "An unhandled exception has occurred.");
-                context.Response.StatusCode = 500;
-                await context.Response.WriteAsync("An unhandled exception has occurred.");
-            }
-        });
-
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
