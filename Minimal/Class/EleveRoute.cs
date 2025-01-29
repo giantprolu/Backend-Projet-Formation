@@ -1,7 +1,7 @@
 ﻿using Business.ServicesMinimal;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
-using Models.ModelMinimal;
+using Business.Models;
 
 namespace Minimal.Class
 {
@@ -14,15 +14,15 @@ namespace Minimal.Class
             var eleveidGroup = eleveGroup.MapGroup("/{id}");
             
             app.MapGet("/ListEleve", HandleGetListEleveAsync)
-                .Produces<IEnumerable<EleveMini>>()
+                .Produces<IEnumerable<Eleve>>()
                 .Produces(StatusCodes.Status204NoContent);
 
             eleveidGroup.MapGet(string.Empty, HandleGetEleveByIdAsync)
-                .Produces<EleveMini>()
+                .Produces<Eleve>()
                 .Produces(StatusCodes.Status404NotFound);
 
             eleveGroup.MapPost(string.Empty, HandlePostEleveAsync)
-                .Produces<EleveMini>(StatusCodes.Status201Created)
+                .Produces<Eleve>(StatusCodes.Status201Created)
             .Produces(StatusCodes.Status404NotFound);
 
             eleveidGroup.MapDelete(string.Empty, HandleDeleteEleveAsync)
@@ -30,7 +30,7 @@ namespace Minimal.Class
                 .Produces(StatusCodes.Status404NotFound);
 
             eleveGroup.MapPut("/updateById/{id}", HandleUpdateEleveByIdAsync)
-                .Produces<EleveMini>()
+                .Produces<Eleve>()
                 .Produces(StatusCodes.Status404NotFound);
         }
         static async Task<IResult> HandleGetListEleveAsync(IEleveServiceMini service)
@@ -45,9 +45,9 @@ namespace Minimal.Class
             return eleve is not null ? Results.Ok(eleve) : Results.NotFound($"Élève avec l'ID {id} non trouvé.");
         }
 
-        static async Task<IResult> HandlePostEleveAsync(IEleveServiceMini service, Models.ModelMinimal.EleveMini eleve, string schoolName)
+        static async Task<IResult> HandlePostEleveAsync(IEleveServiceMini service, Models.ModelMinimal.EleveMini eleve)
         {
-            var result = await service.PostEleveAsync(eleve, schoolName);
+            var result = await service.PostEleveAsync(eleve);
             return result switch
             {
                 not null => Results.Created($"/eleve/{result.Id}", result),
@@ -61,21 +61,13 @@ namespace Minimal.Class
             return success ? Results.NoContent() : Results.NotFound($"Élève avec l'ID {id} non trouvé.");
         }
 
-        static async Task<IResult> HandleUpdateEleveByIdAsync(IEleveServiceMini service, int Id, string newNom, string newPrenom, int newAge, bool newSexe, string newSchoolName)
+        static async Task<IResult> HandleUpdateEleveByIdAsync(IEleveServiceMini service, int id, Eleve updatedEleve)
         {
-            var updatedEleve = new EleveMini
-            {
-                Nom = newNom,
-                Prenom = newPrenom,
-                Age = newAge,
-                Sexe = newSexe
-            };
-
-            var eleve = await service.UpdateEleveByIdAsync(Id, updatedEleve, newSchoolName);
-            return eleve is not null ? Results.Ok(eleve) : Results.NotFound($"Élève avec l'ID {Id} non trouvé ou école {newSchoolName} non trouvée.");
+            var eleve = await service.UpdateEleveByIdAsync(id, updatedEleve);
+            return eleve is not null ? Results.Ok(eleve) : Results.NotFound($"Élève avec l'ID {id} non trouvé.");
         }
 
-        
+
     }
 
 }

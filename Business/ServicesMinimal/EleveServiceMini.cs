@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Models.ModelMinimal;
+﻿using Models.ModelMinimal;
 using Microsoft.EntityFrameworkCore;
 
 namespace Business.ServicesMinimal
@@ -29,9 +24,9 @@ namespace Business.ServicesMinimal
                 .FirstOrDefaultAsync(e => e.Id == id);
         }
 
-        public async Task<EleveMini?> PostEleveAsync(EleveMini eleve, string schoolName)
+        public async Task<EleveMini?> PostEleveAsync(EleveMini eleve)
         {
-            var school = await _context.Schools.FirstOrDefaultAsync(s => s.Nom == schoolName);
+            var school = await _context.Schools.FirstOrDefaultAsync();
             if (school == null)
             {
                 return null;
@@ -43,7 +38,6 @@ namespace Business.ServicesMinimal
 
             return await _context.Eleves.Include(e => e.Schools).FirstOrDefaultAsync(e => e.Id == eleve.Id);
         }
-
         public async Task<bool> DeleteEleveAsync(int id)
         {
             var eleve = await _context.Eleves.FindAsync(id);
@@ -56,43 +50,25 @@ namespace Business.ServicesMinimal
             await _context.SaveChangesAsync();
             return true;
         }
-
-        public async Task<EleveMini?> UpdateEleveByIdAsync(int Id, EleveMini updatedEleve, string newSchoolName)
+        public async Task<EleveMini?> UpdateEleveByIdAsync(int id, EleveMini updatedEleve)
         {
-            var eleve = await _context.Eleves.Include(e => e.Schools).FirstOrDefaultAsync(e => e.Id == Id);
+            var eleve = await _context.Eleves.Include(e => e.Schools).FirstOrDefaultAsync(e => e.Id == id);
             if (eleve == null)
             {
                 return null;
             }
 
-            // Mettre à jour les propriétés de l'élève
             eleve.Nom = updatedEleve.Nom;
             eleve.Prenom = updatedEleve.Prenom;
             eleve.Age = updatedEleve.Age;
             eleve.Sexe = updatedEleve.Sexe;
+            eleve.SchoolId = updatedEleve.SchoolId;
+            eleve.Schools = updatedEleve.Schools;
 
-            // Vérifier si le nom de la nouvelle école existe dans la base de données
-            var newSchool = await _context.Schools.FirstOrDefaultAsync(s => s.Nom == newSchoolName);
-            if (newSchool == null)
-            {
-                return null;
-            }
-
-            // Mettre à jour l'école de l'élève
-            eleve.SchoolId = newSchool.Id;
-            eleve.Schools = newSchool;
-
-            // Marquer l'entité comme modifiée
             _context.Entry(eleve).State = EntityState.Modified;
 
             await _context.SaveChangesAsync();
             return eleve;
-        }
-
-
-        public async Task<List<SchoolMini>> GetListSchoolsAsync()
-        {
-            return await _context.Schools.ToListAsync();
         }
     }
 }
