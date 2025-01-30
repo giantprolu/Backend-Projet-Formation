@@ -12,6 +12,6 @@ namespace Models.ModelMinimal
         public int Id { get; set; }
         public string Nom { get; set; }
         public int NmbEleve { get; set; }
-        internal ICollection<EleveMini>? Eleves { get; set; }
+        public ICollection<EleveMini>? Eleves { get; set; }
     }
 }

@@ -48,9 +48,8 @@ namespace Minimal.Class
             return eleve is not null ? Results.Ok(eleve) : Results.NotFound($"Élève avec l'ID {id} non trouvé.");
         }
 
-        static async Task<IResult> HandlePostEleveAsync(IEleveServiceMini service, Models.ModelMinimal.EleveMini eleveMini)
+        static async Task<IResult> HandlePostEleveAsync(IEleveServiceMini service, Eleve eleve)
         {
-            var eleve = eleveMini.ToEleve();
             var result = await service.PostEleveAsync(eleve);
             return result switch
             {

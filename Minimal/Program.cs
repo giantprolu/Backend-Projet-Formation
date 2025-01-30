@@ -3,20 +3,19 @@ using Models.ModelMinimal;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
 using Business.ServicesMinimal;
-using Minimal.Class;
 using System.Reflection;
-using System.Runtime.InteropServices.ObjectiveC;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Logging;
+using Business.Extensions;
 
 public class Program
 {
     public static void Main(string[] args)
     {
-        
         var builder = WebApplication.CreateBuilder(args);
-        builder.Services.AddDbContext<EleveContextMini>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+        //builder.Services.AddScoped(typeof(IEleveRepo<>), typeof(EleveRepo<>));
+        //builder.Services.AddDbContext<EleveContextMini>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString(name: "DefaultConnection")));
+        builder.Services.ConfigureSqlServerContext(builder.Configuration);
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("AllowAngularOrigins",
@@ -36,8 +35,10 @@ public class Program
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "Minimal API", Version = "v1" });
             c.CustomSchemaIds(type => type.FullName);
         });
-        builder.Services.AddScoped<IEleveServiceMini, EleveServiceMini>();
-        builder.Services.AddScoped<ISchoolServiceMini, SchoolServiceMini>();
+
+        //builder.Services.AddScoped<IEleveServiceMini, EleveServiceMini>();
+        builder.Services.AddApplicationServices();
+        //builder.Services.AddScoped<ISchoolServiceMini, SchoolServiceMini>();
         builder.Services.AddLogging();
 
         var app = builder.Build();
@@ -49,7 +50,6 @@ public class Program
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Minimal API v1");
             });
-            
         }
 
         var interfaceType = typeof(IAddRoute);
@@ -72,8 +72,7 @@ public class Program
         app.UseCors("AllowAngularOrigins");
         app.UseAuthorization();
         app.UseRouting();
-        
+
         app.Run();
     }
-
 }

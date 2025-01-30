@@ -2,25 +2,25 @@
 using Microsoft.EntityFrameworkCore;
 using Business.Profile;
 using Business.Models;
+using Models.Repository;
+using System.Linq.Expressions;
 
 namespace Business.ServicesMinimal
 {
-    public class EleveServiceMini : IEleveServiceMini
+    internal class EleveServiceMini : EleveRepo<Eleve>, IEleveServiceMini
     {
-        private readonly EleveContextMini _context;
+        public EleveServiceMini(EleveContextMini context) : base(context)
 
-        public EleveServiceMini(EleveContextMini context)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<List<Eleve>> GetListEleveAsync()
+        public new async Task<List<Eleve>> GetListEleveAsync()
         {
-            var elevesMini = await _context.Eleves.Include(e => e.Schools).ToListAsync();
+            var elevesMini = await _context.Eleves.Include(e => e.Schools).AsNoTracking().ToListAsync();
             return elevesMini.Select(e => e.ToEleve()).ToList();
         }
 
-        public async Task<Eleve?> GetEleveByIdAsync(int id)
+        public new async Task<Eleve?> GetEleveByIdAsync(int id)
         {
             var eleveMini = await _context.Eleves
                 .Include(e => e.Schools)
@@ -28,7 +28,7 @@ namespace Business.ServicesMinimal
             return eleveMini?.ToEleve();
         }
 
-        public async Task<Eleve?> PostEleveAsync(Eleve eleve)
+        public new async Task<Eleve?> PostEleveAsync(Eleve eleve)
         {
             var school = await _context.Schools.FirstOrDefaultAsync();
             if (school == null)
@@ -45,7 +45,7 @@ namespace Business.ServicesMinimal
             return createdEleveMini?.ToEleve();
         }
 
-        public async Task<bool> DeleteEleveAsync(int id)
+        public new async Task<bool> DeleteEleveAsync(int id)
         {
             var eleve = await _context.Eleves.FindAsync(id);
             if (eleve == null)

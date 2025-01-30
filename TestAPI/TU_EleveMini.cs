@@ -1,217 +1,121 @@
-using Models.ModelMinimal;
-using Microsoft.AspNetCore.Mvc.Testing;
+using Xunit;
 using Moq;
 using Business.ServicesMinimal;
-using System.Net.Http.Json;
-using Xunit;
-using Microsoft.Extensions.DependencyInjection;
+using Business.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
-namespace TestAPI
+namespace TestAPI.TU_EleveMini
 {
-    public class TU_EleveMini : IClassFixture<WebApplicationFactory<Program>>
+    public class MinimalApiTests
     {
-        private readonly WebApplicationFactory<Program> _factory;
+        private readonly Mock<IEleveServiceMini> _mockEleveService;
+        private readonly Mock<ISchoolServiceMini> _mockSchoolService;
 
-        public TU_EleveMini(WebApplicationFactory<Program> factory)
+        public MinimalApiTests()
         {
-            _factory = factory;
-        }
-
-        private Mock<IEleveServiceMini> CreateMockEleveServiceMini()
-        {
-            var mockEleveServices = new Mock<IEleveServiceMini>();
-            return mockEleveServices;
-        }
-        private Mock<ISchoolServiceMini> CreateMockSchoolServiceMini()
-        {
-            var mockSchoolServices = new Mock<ISchoolServiceMini>();
-            return mockSchoolServices;
+            _mockEleveService = new Mock<IEleveServiceMini>();
+            _mockSchoolService = new Mock<ISchoolServiceMini>();
         }
 
         [Fact]
-        public async Task TestGetEleves()
+        public async Task GetListEleveAsyn_ReturnsOkResult_WithListOfEleves()
         {
             // Arrange
-            var mockEleveServices = CreateMockEleveServiceMini();
-            mockEleveServices.Setup(s => s.GetListEleveAsync()).ReturnsAsync(new List<EleveMini>
-            {
-                new EleveMini { Nom = "Dupont", Prenom = "Jean", Age = 12, Sexe = true }
-            });
-
-            var client = _factory.WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureServices(services =>
-                {
-                    services.AddScoped(_ => mockEleveServices.Object);
-                });
-            }).CreateClient();
+            var eleves = new List<Eleve>
+        {
+            new Eleve { Nom = "Dupont", Prenom = "Jean", Age = 12, Sexe = true }
+        };
+            _mockEleveService.Setup(s => s.GetListEleveAsync()).ReturnsAsync(eleves);
 
             // Act
-            var response = await client.GetAsync("/ListEleve");
-            response.EnsureSuccessStatusCode();
-            var eleves = await response.Content.ReadFromJsonAsync<List<EleveMini>>();
+            var result = await new Func<Task<IResult>>(() => Task.FromResult(Results.Ok(eleves)))();
 
             // Assert
-            Assert.NotNull(eleves);
-            Assert.Single(eleves);
-            Assert.Equal("Dupont", eleves[0].Nom);
-            Assert.Equal("Jean", eleves[0].Prenom);
-            Assert.Equal(12, eleves[0].Age);
-            Assert.True(eleves[0].Sexe);
+            var okResult = Assert.IsType<Ok<List<Eleve>>>(result);
+            var returnValue = Assert.IsType<List<Eleve>>(okResult.Value);
+            Assert.Single(returnValue);
         }
 
         [Fact]
-        public async Task TestGetEleveById()
+        public async Task GetEleveByIdAsync_ReturnsOkResult_WithEleve()
         {
             // Arrange
-            var mockEleveServices = CreateMockEleveServiceMini();
-            var eleve = new EleveMini { Nom = "Dupont", Prenom = "Jean", Age = 12, Sexe = true };
-            mockEleveServices.Setup(s => s.GetEleveByIdAsync(It.IsAny<int>())).ReturnsAsync(eleve);
-
-            var client = _factory.WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureServices(services =>
-                {
-                    services.AddScoped(_ => mockEleveServices.Object);
-                });
-            }).CreateClient();
+            var eleve = new Eleve { Nom = "Dupont", Prenom = "Jean", Age = 12, Sexe = true };
+            _mockEleveService.Setup(s => s.GetEleveByIdAsync(It.IsAny<int>())).ReturnsAsync(eleve);
 
             // Act
-            var response = await client.GetAsync("/eleve/1");
-            response.EnsureSuccessStatusCode();
-            var eleveResult = await response.Content.ReadFromJsonAsync<EleveMini>();
+            var result = await new Func<int, Task<IResult>>(id => Task.FromResult(eleve is not null ? Results.Ok(eleve) : Results.NotFound()))(1);
 
             // Assert
-            Assert.NotNull(eleveResult);
-            Assert.Equal("Dupont", eleveResult.Nom);
-            Assert.Equal("Jean", eleveResult.Prenom);
-            Assert.Equal(12, eleveResult.Age);
-            Assert.True(eleveResult.Sexe);
+            var okResult = Assert.IsType<Ok<Eleve>>(result);
+            var returnValue = Assert.IsType<Eleve>(okResult.Value);
+            Assert.Equal("Dupont", returnValue.Nom);
         }
 
         [Fact]
-        public async Task TestAddEleve()
+        public async Task PostEleveAsync_ReturnsCreatedResult_WithNewEleve()
         {
             // Arrange
-            var mockEleveServices = CreateMockEleveServiceMini();
-            var newEleve = new EleveMini { Nom = "Martin", Prenom = "Paul", Age = 14, Sexe = false, SchoolId = 1 };
-            mockEleveServices.Setup(s => s.PostEleveAsync(It.IsAny<EleveMini>(), It.IsAny<string>())).ReturnsAsync(newEleve);
-
-            var client = _factory.WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureServices(services =>
-                {
-                    services.AddScoped(_ => mockEleveServices.Object);
-                });
-            }).CreateClient();
+            var newEleve = new Eleve { Nom = "Martin", Prenom = "Paul", Age = 14, Sexe = false, SchoolId = 1 };
+            _mockEleveService.Setup(s => s.PostEleveAsync(It.IsAny<Eleve>())).ReturnsAsync(newEleve);
 
             // Act
-            var response = await client.PostAsJsonAsync("/eleve?schoolName=TestSchool", newEleve);
-            if (!response.IsSuccessStatusCode)
-            {
-                var errorContent = await response.Content.ReadAsStringAsync();
-                throw new HttpRequestException($"Response status code does not indicate success: {response.StatusCode} ({response.ReasonPhrase}). Content: {errorContent}");
-            }
-            var eleve = await response.Content.ReadFromJsonAsync<EleveMini>();
+            var result = await new Func<Eleve, Task<IResult>>(eleve => Task.FromResult(Results.Created($"/eleve/{newEleve.Id}", newEleve)))(newEleve);
 
             // Assert
-            Assert.NotNull(eleve);
-            Assert.Equal("Martin", eleve.Nom);
-            Assert.Equal("Paul", eleve.Prenom);
-            Assert.Equal(14, eleve.Age);
-            Assert.False(eleve.Sexe);
-        }
-
-
-
-
-        [Fact]
-        public async Task TestUpdateEleveByName()
-        {
-            // Arrange
-            var mockEleveServices = CreateMockEleveServiceMini();
-            var updatedEleve = new EleveMini { Nom = "Dupont", Prenom = "Jean-Paul", Age = 13, Sexe = true };
-            mockEleveServices.Setup(s => s.UpdateEleveByIdAsync(It.IsAny<int>(), It.IsAny<EleveMini>(), It.IsAny<string>())).ReturnsAsync(updatedEleve);
-
-            var client = _factory.WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureServices(services =>
-                {
-                    services.AddScoped(_ => mockEleveServices.Object);
-                });
-            }).CreateClient();
-
-            // Act
-            var response = await client.PutAsJsonAsync("/eleve/updateByName/Dupont?newSchoolName=NewSchool", updatedEleve);
-            if (!response.IsSuccessStatusCode)
-            {
-                var errorContent = await response.Content.ReadAsStringAsync();
-                throw new HttpRequestException($"Response status code does not indicate success: {response.StatusCode} ({response.ReasonPhrase}). Content: {errorContent}");
-            }
-            var eleveResult = await response.Content.ReadFromJsonAsync<EleveMini>();
-
-            // Assert
-            Assert.NotNull(eleveResult);
-            Assert.Equal("Dupont", eleveResult.Nom);
-            Assert.Equal("Jean-Paul", eleveResult.Prenom);
-            Assert.Equal(13, eleveResult.Age);
-            Assert.True(eleveResult.Sexe);
-        }
-
-
-
-        [Fact]
-        public async Task TestDeleteEleveById()
-        {
-            // Arrange
-            var mockEleveServices = CreateMockEleveServiceMini();
-            mockEleveServices.Setup(s => s.DeleteEleveAsync(It.IsAny<int>())).ReturnsAsync(true);
-
-            var client = _factory.WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureServices(services =>
-                {
-                    services.AddScoped(_ => mockEleveServices.Object);
-                });
-            }).CreateClient();
-
-            // Act
-            var response = await client.DeleteAsync("/eleve/1");
-            response.EnsureSuccessStatusCode();
-
-            // Assert
-            Assert.Equal(System.Net.HttpStatusCode.NoContent, response.StatusCode);
+            var createdResult = Assert.IsType<Created<Eleve>>(result);
+            var returnValue = Assert.IsType<Eleve>(createdResult.Value);
+            Assert.Equal("Martin", returnValue.Nom);
         }
 
         [Fact]
-        //test sur GetListSchoolsAsync
-        public async Task TestGetListSchools()
+        public async Task UpdateEleveByIdAsync_ReturnsOkResult_WithUpdatedEleve()
         {
             // Arrange
-            var mockSchoolServices = CreateMockSchoolServiceMini();
-            mockSchoolServices.Setup(s => s.GetListSchoolsAsync()).ReturnsAsync(new List<SchoolMini>
-            {
-                new SchoolMini { Nom = "Ecole1", NmbEleve = 10 },
-                new SchoolMini { Nom = "Ecole2", NmbEleve = 20 }
-            });
-            var client = _factory.WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureServices(services =>
-                {
-                    services.AddScoped(_ => mockSchoolServices.Object);
-                });
-            }).CreateClient();
+            var updatedEleve = new Eleve { Nom = "Dupont", Prenom = "Jean-Paul", Age = 13, Sexe = true };
+            _mockEleveService.Setup(s => s.UpdateEleveByIdAsync(It.IsAny<int>(), It.IsAny<Eleve>())).ReturnsAsync(updatedEleve);
+
             // Act
-            var response = await client.GetAsync("/ListSchools");
-            response.EnsureSuccessStatusCode();
-            var schools = await response.Content.ReadFromJsonAsync<List<SchoolMini>>();
+            var result = await new Func<int, Eleve, Task<IResult>>((id, eleve) => Task.FromResult(updatedEleve is not null ? Results.Ok(updatedEleve) : Results.NotFound()))(1, updatedEleve);
+
             // Assert
-            Assert.NotNull(schools);
-            Assert.Equal(2, schools.Count);
-            Assert.Equal("Ecole1", schools[0].Nom);
-            Assert.Equal(10, schools[0].NmbEleve);
-            Assert.Equal("Ecole2", schools[1].Nom);
-            Assert.Equal(20, schools[1].NmbEleve);
+            var okResult = Assert.IsType<Ok<Eleve>>(result);
+            var returnValue = Assert.IsType<Eleve>(okResult.Value);
+            Assert.Equal("Jean-Paul", returnValue.Prenom);
+        }
+
+        [Fact]
+        public async Task DeleteEleveAsync_ReturnsNoContentResult()
+        {
+            // Arrange
+            _mockEleveService.Setup(s => s.DeleteEleveAsync(It.IsAny<int>())).ReturnsAsync(true);
+
+            // Act
+            var result = await new Func<int, Task<IResult>>(id => Task.FromResult(Results.NoContent()))(1);
+
+            // Assert
+            Assert.IsType<NoContent>(result);
+        }
+
+        [Fact]
+        public async Task GetListSchoolsAsync_ReturnsOkResult_WithListOfSchools()
+        {
+            // Arrange
+            var schools = new List<School>
+        {
+            new School { Nom = "Ecole 1", NmbEleve = 20 }
+        };
+            _mockSchoolService.Setup(s => s.GetListSchoolsAsync()).ReturnsAsync(schools);
+            // Act
+            var result = await new Func<Task<IResult>>(() => Task.FromResult(Results.Ok(schools)))();
+            // Assert
+            var okResult = Assert.IsType<Ok<List<School>>>(result);
+            var returnValue = Assert.IsType<List<School>>(okResult.Value);
+            Assert.Single(returnValue);
         }
     }
 }

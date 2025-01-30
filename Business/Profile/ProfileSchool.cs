@@ -17,5 +17,8 @@ namespace Business.Profile
 
         [MapperIgnoreTarget(nameof(SchoolMini.NmbEleve))]
         public static partial SchoolMini ToSchoolMini(this School school);
+
+        //[MapperIgnoreSource(nameof(SchoolMini.NmbEleve))]
+        //public static partial School ToSchoolTest(SchoolMini school);
     }
 }

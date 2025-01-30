@@ -10,7 +10,7 @@ using Business.Models;
 
 namespace Business.ServicesMinimal
 {
-    public class SchoolServiceMini : ISchoolServiceMini
+    internal class SchoolServiceMini : ISchoolServiceMini
     {
         private readonly EleveContextMini _context;
 
