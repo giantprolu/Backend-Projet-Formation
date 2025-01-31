@@ -4,50 +4,53 @@ using Models.ModelMinimal;
 
 namespace Models.Repository
 {
-    public class EleveRepo<T> : IEleveRepo<T> where T : class
+    internal class EleveRepo : Repository<EleveMini>, IEleveRepo<EleveMini>
     {
-        protected EleveContextMini _context { get; set; }
+        private readonly EleveContextMini _context;
 
-        public EleveRepo(EleveContextMini context)
+        public EleveRepo(DbContextOptions<EleveContextMini> options)
         {
-            _context = context;
+            _context = new EleveContextMini(options);
         }
 
-        public async Task<IEnumerable<T>> GetListEleveAsync()
-        {
-            return await _context.Set<T>().ToListAsync();
-        }
-
-        public async Task<T?> GetEleveByIdAsync(int id)
-        {
-            return await _context.Set<T>().FindAsync(id);
-        }
-
-        public async Task PostEleveAsync(T entity)
-        {
-            await _context.Set<T>().AddAsync(entity);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task UpdateEleveByIdAsync(T entity)
-        {
-            _context.Set<T>().Update(entity);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task DeleteEleveAsync(int id)
+        public async Task<bool> DeleteEleveAsync(int id)
         {
             var entity = await GetEleveByIdAsync(id);
             if (entity != null)
             {
-                _context.Set<T>().Remove(entity);
+                _context.Set<EleveMini>().Remove(entity);
                 await _context.SaveChangesAsync();
             }
+            return false;
         }
 
-        public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
+        public async Task<EleveMini?> GetEleveByIdAsync(int id)
         {
-            return await _context.Set<T>().Where(predicate).ToListAsync();
+            return await _context.Set<EleveMini>().FindAsync(id);
+        }
+
+        public async Task<List<EleveMini>> GetListEleveAsync()
+        {
+            return await _context.Set<EleveMini>().ToListAsync();
+        }
+
+        public async Task<EleveMini?> PostEleveAsync(EleveMini eleve)
+        {
+            await _context.Set<EleveMini>().AddAsync(eleve);
+            await _context.SaveChangesAsync();
+            return eleve;
+        }
+
+        public async Task<EleveMini?> UpdateEleveByIdAsync(int id, EleveMini eleve)
+        {
+            _context.Set<EleveMini>().Update(eleve);
+            await _context.SaveChangesAsync();
+            return eleve;
+        }
+
+        public async Task<IEnumerable<EleveMini>> FindEleveAsync(Expression<Func<EleveMini, bool>> predicate)
+        {
+            return await _context.Set<EleveMini>().Where(predicate).ToListAsync();
         }
     }
 }

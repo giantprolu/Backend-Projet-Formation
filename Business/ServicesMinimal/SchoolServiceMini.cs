@@ -1,22 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Business.Models;
+using Business.Profile;
 using Microsoft.EntityFrameworkCore;
 using Models.ModelMinimal;
-using Business.Profile;
-using Business.Models;
+using Models.RepositorySchool;
 
 namespace Business.ServicesMinimal
 {
     internal class SchoolServiceMini : ISchoolServiceMini
     {
-        private readonly EleveContextMini _context;
+        private readonly ISchoolRepo<School> _schoolRepo;
+        private readonly IEleveContextMini _context;
 
-        public SchoolServiceMini(EleveContextMini context)
+        public SchoolServiceMini(ISchoolRepo<School> schoolRepo, IEleveContextMini context)
         {
+            _schoolRepo = schoolRepo;
             _context = context;
+        }
+
+        public Task<IEnumerable<SchoolMini>> GetListAsync()
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<List<School>> GetListSchoolsAsync()

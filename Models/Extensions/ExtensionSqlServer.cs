@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Models.ModelMinimal;
 
-namespace Business.Extensions
+namespace Models.Extensions
 {
     public static class ExtensionSqlServer
     {

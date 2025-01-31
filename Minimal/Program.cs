@@ -5,17 +5,21 @@ using System.Text.Json.Serialization;
 using Business.ServicesMinimal;
 using System.Reflection;
 using Business.Extensions;
+using Models.Extensions;
 
 public class Program
 {
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        //builder.Services.AddScoped(typeof(IEleveRepo<>), typeof(EleveRepo<>));
-        //builder.Services.AddDbContext<EleveContextMini>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString(name: "DefaultConnection")));
+
+        // Configure SQL Server context
         builder.Services.ConfigureSqlServerContext(builder.Configuration);
+
+        // Add database developer page exception filter
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+        // Add CORS policy
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("AllowAngularOrigins",
@@ -23,12 +27,16 @@ public class Program
                                   .AllowAnyHeader()
                                   .AllowAnyMethod());
         });
+
+        // Add controllers with JSON options
         builder.Services.AddControllers()
             .AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
                 options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
             });
+
+        // Add Swagger
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(c =>
         {
@@ -36,12 +44,12 @@ public class Program
             c.CustomSchemaIds(type => type.FullName);
         });
 
-        //builder.Services.AddScoped<IEleveServiceMini, EleveServiceMini>();
+        // Add application services and repositories
         builder.Services.AddApplicationServices();
-        //builder.Services.AddScoped<ISchoolServiceMini, SchoolServiceMini>();
-        builder.Services.AddLogging();
+        builder.Services.AddApplicationRepo();
 
-        var app = builder.Build();
+        // Build the application
+        WebApplication? app = builder.Build();
 
         if (app.Environment.IsDevelopment())
         {
@@ -52,6 +60,7 @@ public class Program
             });
         }
 
+        // Map routes
         var interfaceType = typeof(IAddRoute);
         var implementingTypes = Assembly.GetExecutingAssembly().GetTypes()
             .Where(t => interfaceType.IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract);
@@ -62,17 +71,13 @@ public class Program
             route?.MapRoutes(app);
         }
 
-        //var routeBuilderEleve = new EleveRoute();
-        //routeBuilderEleve.AddRoutes(app);
-
-        //var routeBuilderSchool = new SchoolRoute();
-        //routeBuilderSchool.AddRoutes(app);
-
+        // Use middleware
         app.UseHttpsRedirection();
         app.UseCors("AllowAngularOrigins");
         app.UseAuthorization();
         app.UseRouting();
 
+        // Run the application
         app.Run();
     }
 }

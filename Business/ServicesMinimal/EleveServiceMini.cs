@@ -7,20 +7,25 @@ using System.Linq.Expressions;
 
 namespace Business.ServicesMinimal
 {
-    internal class EleveServiceMini : EleveRepo<Eleve>, IEleveServiceMini
+    internal class EleveServiceMini : IEleveServiceMini
     {
-        public EleveServiceMini(EleveContextMini context) : base(context)
+        private readonly IEleveRepo<Eleve> _eleveRepo;
+        private readonly IEleveContextMini _context;
 
+        public EleveServiceMini(IEleveRepo<Eleve> eleveRepo, IEleveContextMini context)
         {
+            _eleveRepo = eleveRepo;
+            _context = context;
         }
 
-        public new async Task<List<Eleve>> GetListEleveAsync()
+        public async Task<List<Eleve>> GetListEleveAsync()
         {
-            var elevesMini = await _context.Eleves.Include(e => e.Schools).AsNoTracking().ToListAsync();
-            return elevesMini.Select(e => e.ToEleve()).ToList();
+            var eleve = await _eleveRepo.GetListEleveAsync();
+            var eleves = await _context.Eleves.Include(e => e.Schools).AsNoTracking().ToListAsync();
+            return eleves.Select(e => e.ToEleve()).ToList();
         }
 
-        public new async Task<Eleve?> GetEleveByIdAsync(int id)
+        public async Task<Eleve?> GetEleveByIdAsync(int id)
         {
             var eleveMini = await _context.Eleves
                 .Include(e => e.Schools)
@@ -28,7 +33,7 @@ namespace Business.ServicesMinimal
             return eleveMini?.ToEleve();
         }
 
-        public new async Task<Eleve?> PostEleveAsync(Eleve eleve)
+        public async Task<Eleve?> PostEleveAsync(Eleve eleve)
         {
             var school = await _context.Schools.FirstOrDefaultAsync();
             if (school == null)
@@ -45,7 +50,7 @@ namespace Business.ServicesMinimal
             return createdEleveMini?.ToEleve();
         }
 
-        public new async Task<bool> DeleteEleveAsync(int id)
+        public async Task<bool> DeleteEleveAsync(int id)
         {
             var eleve = await _context.Eleves.FindAsync(id);
             if (eleve == null)
@@ -76,6 +81,36 @@ namespace Business.ServicesMinimal
 
             await _context.SaveChangesAsync();
             return eleveMini.ToEleve();
+        }
+
+        public Task<IEnumerable<EleveMini>> GetListAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<EleveMini?> GetByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<EleveMini?> PostAsync(EleveMini entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<EleveMini?> UpdateByIdAsync(EleveMini entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DeleteAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<EleveMini>> FindAsync(Expression<Func<EleveMini, bool>> predicate)
+        {
+            throw new NotImplementedException();
         }
     }
 }

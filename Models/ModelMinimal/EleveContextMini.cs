@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Models.ModelMinimal
 {
-    public class EleveContextMini : DbContext
+    internal class EleveContextMini : DbContext, IEleveContextMini
     {
-        public DbSet<EleveMini> Eleves { get; set; }
-        public DbSet<SchoolMini> Schools { get; set; }
-
         // Constructeur de la classe EleveContext qui prend en paramètre des options de configuration
         // et les passe à la classe de base DbContext
         public EleveContextMini(DbContextOptions<EleveContextMini> options)
@@ -30,5 +28,13 @@ namespace Models.ModelMinimal
                 // Définition de la clé étrangère SchoolId dans l'entité Eleve
                 .HasForeignKey(e => e.SchoolId);
         }
+
+        public EntityEntry<EleveMini> Entry(EleveMini eleveMini)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DbSet<EleveMini> Eleves { get; set; }
+        public DbSet<SchoolMini> Schools { get; set; }
     }
 }

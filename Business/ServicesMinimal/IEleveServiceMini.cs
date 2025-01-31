@@ -14,10 +14,10 @@ namespace Business.ServicesMinimal
 
         new Task<Eleve?> GetEleveByIdAsync(int id);
 
-        new Task<Eleve?> PostEleveAsync(Eleve enity);
+        new Task<Eleve?> PostEleveAsync(Eleve eleve);
 
         new Task<bool> DeleteEleveAsync(int id);
 
-        Task<Eleve?> UpdateEleveByIdAsync(int id, Eleve enity);
+        new Task<Eleve?> UpdateEleveByIdAsync(int id, Eleve eleve);
     }
 }

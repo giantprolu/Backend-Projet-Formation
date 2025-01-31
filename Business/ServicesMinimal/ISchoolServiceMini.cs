@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Models.ModelMinimal;
 using Business.Models;
+using Models.RepositorySchool;
 
 namespace Business.ServicesMinimal
 {
-    public interface ISchoolServiceMini
+    public interface ISchoolServiceMini : ISchoolRepo<School>
     {
-        Task<List<School>> GetListSchoolsAsync();
+        new Task<List<School>> GetListSchoolsAsync();
     }
 }

@@ -1,19 +1,18 @@
 ﻿using System.Linq.Expressions;
+using Models.ModelMinimal;
 
 namespace Models.Repository
 {
-    public interface IEleveRepo<T> where T : class
+    public interface IEleveRepo<T> : IRepository<EleveMini>
     {
-        Task<IEnumerable<T>> GetListEleveAsync();
+        Task<List<T>> GetListEleveAsync();
 
         Task<T?> GetEleveByIdAsync(int id);
 
-        Task PostEleveAsync(T entity);
+        Task<T?> PostEleveAsync(T eleve);
 
-        Task UpdateEleveByIdAsync(T entity);
+        Task<bool> DeleteEleveAsync(int id);
 
-        Task DeleteEleveAsync(int id);
-
-        Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
+        Task<T?> UpdateEleveByIdAsync(int id, T eleve);
     }
 }
