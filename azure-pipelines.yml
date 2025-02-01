@@ -21,9 +21,9 @@ steps:
 - checkout: none
 
 - script: |
-    git clone --mirror "https://$(AZURE_DEVOPS_PAT)@dev.azure.com/nathanchavaudra/Projet-Formation-Exakis-Nelite/_git/Backend%20-%20Projet%20-Formation"
+    git clone --mirror https://$(AZURE_DEVOPS_PAT)@dev.azure.com/nathanchavaudra/Projet-Formation-Exakis-Nelite/_git/Backend%20-%20Projet%20-Formation
     cd Backend%20-%20Projet%20-Formation.git
-    git remote add github "https://$(GITHUB_USERNAME):$(GITHUB_TOKEN)@github.com/giantprolu/Backend-Projet-Formation.git"
+    git remote add github https://$(GITHUB_USERNAME):$(GITHUB_TOKEN)@github.com/giantprolu/Backend-Projet-Formation.git
     git push --mirror github
   displayName: 'Sync Backend Repo'
   env:
