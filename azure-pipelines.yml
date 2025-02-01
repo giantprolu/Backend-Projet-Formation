@@ -18,14 +18,18 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
-- checkout: self
+- checkout: none
 
 - script: |
     git clone --mirror "https://$(AZURE_DEVOPS_PAT)@dev.azure.com/nathanchavaudra/Projet-Formation-Exakis-Nelite/_git/Backend%20-%20Projet%20-Formation"
-    cd Backend-Projet-Formation.git
+    cd Backend%20-%20Projet%20-Formation.git
     git remote add github "https://$(GITHUB_USERNAME):$(GITHUB_TOKEN)@github.com/giantprolu/Backend-Projet-Formation.git"
     git push --mirror github
   displayName: 'Sync Backend Repo'
+  env:
+    AZURE_DEVOPS_PAT: $(AZURE_DEVOPS_PAT)
+    GITHUB_TOKEN: $(GITHUB_TOKEN)
+    GITHUB_USERNAME: $(GITHUB_USERNAME)
 
 - task: NuGetCommand@2
   inputs:
