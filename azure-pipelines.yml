@@ -18,7 +18,7 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
-- checkout: none
+- checkout: self
 
 - script: |
     git config --global user.email "nathan.chavaudra@exakis-nelite.com"
