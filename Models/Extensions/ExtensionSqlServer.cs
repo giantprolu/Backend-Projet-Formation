@@ -9,7 +9,7 @@ namespace Models.Extensions
     {
         public static void ConfigureSqlServerContext(this IServiceCollection services, IConfiguration config)
         {
-            var connectionString = config["ConnectionStrings:DefaultConnection"];
+            var connectionString = config.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<EleveContextMini>
            (opt => opt.UseSqlServer(connectionString));

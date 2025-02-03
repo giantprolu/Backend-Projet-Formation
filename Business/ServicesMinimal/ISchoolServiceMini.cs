@@ -9,8 +9,8 @@ using Models.RepositorySchool;
 
 namespace Business.ServicesMinimal
 {
-    public interface ISchoolServiceMini : ISchoolRepo<School>
+    public interface ISchoolServiceMini
     {
-        new Task<List<School>> GetListSchoolsAsync();
+        Task<List<School>> GetListSchoolsAsync();
     }
 }

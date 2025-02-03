@@ -8,7 +8,7 @@ using Models.ModelMinimal;
 
 namespace Models.RepositorySchool
 {
-    internal class SchoolRepo : Repository<SchoolMini>, ISchoolRepo<SchoolMini>
+    internal class SchoolRepo : Repository<SchoolMini>, ISchoolRepo
     {
         private readonly EleveContextMini _context;
 

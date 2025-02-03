@@ -12,9 +12,5 @@ namespace Models.ModelMinimal
     {
         DbSet<EleveMini> Eleves { get; set; }
         DbSet<SchoolMini> Schools { get; set; }
-
-        EntityEntry<EleveMini> Entry(EleveMini eleveMini);
-
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

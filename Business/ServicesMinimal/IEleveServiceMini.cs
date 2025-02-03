@@ -1,23 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Business.Models;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Models.ModelMinimal;
 using Models.Repository;
 
 namespace Business.ServicesMinimal
 {
-    public interface IEleveServiceMini : IEleveRepo<Eleve>
+    public interface IEleveServiceMini
     {
-        new Task<List<Eleve>> GetListEleveAsync();
+        Task<List<Eleve>> GetListEleveAsync();
 
-        new Task<Eleve?> GetEleveByIdAsync(int id);
+        Task<Eleve?> GetEleveByIdAsync(int id);
 
-        new Task<Eleve?> PostEleveAsync(Eleve eleve);
+        Task<Eleve?> PostEleveAsync(Eleve eleve);
 
-        new Task<bool> DeleteEleveAsync(int id);
+        Task<bool> DeleteEleveAsync(int id);
 
-        new Task<Eleve?> UpdateEleveByIdAsync(int id, Eleve eleve);
+        Task<Eleve?> UpdateEleveByIdAsync(int id, Eleve eleve);
+
+        IQueryable<Eleve> FindEleveAsync(Expression<Func<Eleve, bool>>? predicate = null,
+            Expression<Func<Eleve, IProperty>>? navigationPropertyPath = null,
+            bool asNoTracking = true);
     }
 }

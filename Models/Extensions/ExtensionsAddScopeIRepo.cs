@@ -14,10 +14,10 @@ namespace Models.Extensions
     {
         public static IServiceCollection AddApplicationRepo(this IServiceCollection services)
         {
-            services.AddScoped(typeof(Models.Repository.IRepository<>), typeof(Models.Repository.Repository<>));
-            services.AddScoped(typeof(Models.RepositorySchool.IRepository<>), typeof(Models.RepositorySchool.Repository<>));
-            services.AddScoped<IEleveRepo<EleveMini>, EleveRepo>();
-            services.AddScoped<ISchoolRepo<SchoolMini>, SchoolRepo>();
+            //services.AddScoped(typeof(Models.Repository.IRepository<>), typeof(Models.Repository.Repository<>));
+            //services.AddScoped(typeof(Models.RepositorySchool.IRepository<>), typeof(Models.RepositorySchool.Repository<>));
+            services.AddScoped<IEleveRepo, EleveRepo>();
+            services.AddScoped<ISchoolRepo, SchoolRepo>();
 
             services.AddDbContext<IEleveContextMini, EleveContextMini>();
 

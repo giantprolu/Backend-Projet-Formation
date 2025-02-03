@@ -8,23 +8,16 @@ namespace Business.ServicesMinimal
 {
     internal class SchoolServiceMini : ISchoolServiceMini
     {
-        private readonly ISchoolRepo<School> _schoolRepo;
-        private readonly IEleveContextMini _context;
+        private readonly ISchoolRepo _schoolRepo;
 
-        public SchoolServiceMini(ISchoolRepo<School> schoolRepo, IEleveContextMini context)
+        public SchoolServiceMini(ISchoolRepo schoolRepo)
         {
             _schoolRepo = schoolRepo;
-            _context = context;
-        }
-
-        public Task<IEnumerable<SchoolMini>> GetListAsync()
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<List<School>> GetListSchoolsAsync()
         {
-            var schoolsMini = await _context.Schools.ToListAsync();
+            var schoolsMini = await _schoolRepo.GetListSchoolsAsync();
             return schoolsMini.Select(s => s.ToSchool()).ToList();
         }
     }

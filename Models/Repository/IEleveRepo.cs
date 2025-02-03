@@ -1,18 +1,23 @@
 ﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Models.ModelMinimal;
 
 namespace Models.Repository
 {
-    public interface IEleveRepo<T> : IRepository<EleveMini>
+    public interface IEleveRepo : IRepository<EleveMini>
     {
-        Task<List<T>> GetListEleveAsync();
+        Task<List<EleveMini>> GetListEleveAsync();
 
-        Task<T?> GetEleveByIdAsync(int id);
+        Task<EleveMini?> GetEleveByIdAsync(int id);
 
-        Task<T?> PostEleveAsync(T eleve);
+        Task<EleveMini?> PostEleveAsync(EleveMini eleve);
 
         Task<bool> DeleteEleveAsync(int id);
 
-        Task<T?> UpdateEleveByIdAsync(int id, T eleve);
+        Task<EleveMini?> UpdateEleveByIdAsync(int id, EleveMini eleve);
+
+        IQueryable<EleveMini> FindEleveAsync(Expression<Func<EleveMini, bool>>? predicate = null,
+            Expression<Func<EleveMini, IProperty>>? navigationPropertyPath = null,
+            bool asNoTracking = true);
     }
 }

@@ -46,10 +46,9 @@ public class Program
 
         // Add application services and repositories
         builder.Services.AddApplicationServices();
-        builder.Services.AddApplicationRepo();
 
         // Build the application
-        WebApplication? app = builder.Build();
+        WebApplication app = builder.Build();
 
         if (app.Environment.IsDevelopment())
         {

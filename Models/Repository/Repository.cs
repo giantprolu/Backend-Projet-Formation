@@ -5,6 +5,8 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Models.ModelMinimal;
 
 namespace Models.Repository
 {
@@ -15,7 +17,9 @@ namespace Models.Repository
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
+        public IQueryable<T> FindAsync(Expression<Func<T, bool>>? predicate = null,
+            Expression<Func<T, IProperty>>? navigationPropertyPath = null,
+            bool asNoTracking = true)
         {
             throw new NotImplementedException();
         }

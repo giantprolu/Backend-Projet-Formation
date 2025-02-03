@@ -7,8 +7,8 @@ using Models.ModelMinimal;
 
 namespace Models.RepositorySchool
 {
-    public interface ISchoolRepo<T> : IRepository<SchoolMini>
+    public interface ISchoolRepo : IRepository<SchoolMini>
     {
-        Task<List<T>> GetListSchoolsAsync();
+        Task<List<SchoolMini>> GetListSchoolsAsync();
     }
 }
