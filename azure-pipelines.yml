@@ -14,26 +14,11 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   zipFileName: 'projetEPS.zip' 
-  group: SyncSecrets
+
 
 steps:
 - task: NuGetToolInstaller@1
-- checkout: self
 
-- script: |
-    git config --global user.email "nathan.chavaudra@exakis-nelite.com"
-    git config --global user.name "Nathan CHAVAUDRA"
-    REPO_AZURE="https://$(AZURE_DEVOPS_PAT)@dev.azure.com/nathanchavaudra/Projet-Formation-Exakis-Nelite/_git/Backend-Projet-Formation"
-    REPO_GITHUB="https://$(GITHUB_USERNAME):$(GITHUB_TOKEN)@github.com/giantprolu/Backend-Projet-Formation.git"
-    git clone --mirror "$REPO_AZURE" backend-repo
-    cd backend-repo
-    git remote add github "$REPO_GITHUB"
-    git push --mirror github
-  displayName: 'Sync Backend Repo'
-  env:
-    AZURE_DEVOPS_PAT: $(AZURE_DEVOPS_PAT)
-    GITHUB_TOKEN: $(GITHUB_TOKEN)
-    GITHUB_USERNAME: $(GITHUB_USERNAME)
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
