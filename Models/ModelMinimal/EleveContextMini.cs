@@ -29,11 +29,6 @@ namespace Models.ModelMinimal
                 .HasForeignKey(e => e.SchoolId);
         }
 
-        public EntityEntry<EleveMini> Entry(EleveMini eleveMini)
-        {
-            throw new NotImplementedException();
-        }
-
         public DbSet<EleveMini> Eleves { get; set; }
         public DbSet<SchoolMini> Schools { get; set; }
     }

@@ -1,11 +1,12 @@
-using Microsoft.EntityFrameworkCore;
-using Models.ModelMinimal;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
 using Business.ServicesMinimal;
 using System.Reflection;
 using Business.Extensions;
 using Models.Extensions;
+using Microsoft.EntityFrameworkCore;
+using Models.ModelMinimal;
+using Microsoft.OpenApi.Writers;
 
 public class Program
 {
@@ -13,12 +14,9 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Configure SQL Server context
-        builder.Services.ConfigureSqlServerContext(builder.Configuration);
-
         // Add database developer page exception filter
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
+        builder.Services.AddHostedService();
         // Add CORS policy
         builder.Services.AddCors(options =>
         {
@@ -47,6 +45,8 @@ public class Program
         // Add application services and repositories
         builder.Services.AddApplicationServices();
 
+        builder.Services.UseSqlServe(builder.Configuration);
+        builder.Services.AppDbContextMini();
         // Build the application
         WebApplication app = builder.Build();
 
@@ -75,7 +75,6 @@ public class Program
         app.UseCors("AllowAngularOrigins");
         app.UseAuthorization();
         app.UseRouting();
-
         // Run the application
         app.Run();
     }

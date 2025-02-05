@@ -14,13 +14,17 @@ namespace Models.Extensions
     {
         public static IServiceCollection AddApplicationRepo(this IServiceCollection services)
         {
-            //services.AddScoped(typeof(Models.Repository.IRepository<>), typeof(Models.Repository.Repository<>));
-            //services.AddScoped(typeof(Models.RepositorySchool.IRepository<>), typeof(Models.RepositorySchool.Repository<>));
             services.AddScoped<IEleveRepo, EleveRepo>();
             services.AddScoped<ISchoolRepo, SchoolRepo>();
 
-            services.AddDbContext<IEleveContextMini, EleveContextMini>();
+            //services.AddDbContext<IEleveContextMini, EleveContextMini>();
 
+            return services;
+        }
+
+        public static IServiceCollection AddDbContextMini(this IServiceCollection services)
+        {
+            services.AddScoped<IEleveContextMini>(service => service.GetRequiredService<EleveContextMini>());
             return services;
         }
     }

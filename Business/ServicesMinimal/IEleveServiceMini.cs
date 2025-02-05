@@ -21,7 +21,7 @@ namespace Business.ServicesMinimal
 
         Task<bool> DeleteEleveAsync(int id);
 
-        Task<Eleve?> UpdateEleveByIdAsync(int id, Eleve eleve);
+        Task<Eleve?> UpdateEleveByIdAsync(int id, Eleve updatedEleve);
 
         IQueryable<Eleve> FindEleveAsync(Expression<Func<Eleve, bool>>? predicate = null,
             Expression<Func<Eleve, IProperty>>? navigationPropertyPath = null,

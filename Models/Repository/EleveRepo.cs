@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Models.ModelMinimal;
 using Models.Extensions;
 using Microsoft.EntityFrameworkCore.Metadata;
-using System.Reflection.Metadata;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Models.Repository
 {
@@ -21,11 +19,11 @@ namespace Models.Repository
 
         public async Task<bool> DeleteEleveAsync(int id)
         {
-            var entity = await GetEleveByIdAsync(id);
+            var entity = await GetEleveByIdAsync(id).ConfigureAwait(false);
             if (entity != null)
             {
                 globalVar.Remove(entity);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync().ConfigureAwait(false);
             }
             return false;
         }
@@ -34,38 +32,39 @@ namespace Models.Repository
         {
             return await globalVar
                          .Include(e => e.Schools)
-                         .FirstOrDefaultAsync(e => e.Id == id);
+                         .FirstOrDefaultAsync(e => e.Id == id)
+                         .ConfigureAwait(false);
         }
 
         public async Task<List<EleveMini>> GetListEleveAsync()
         {
-            return await globalVar.NoApplyTracking().ToListAsync();
+            return await globalVar.NoApplyTracking().ToListAsync().ConfigureAwait(false);
         }
 
         public async Task<EleveMini?> PostEleveAsync(EleveMini eleve)
         {
-            var school = await _context.Schools.FirstOrDefaultAsync();
-            if (school == null)
+            var school = await _context.Schools.FirstOrDefaultAsync().ConfigureAwait(false);
+            if (school is null)
             {
                 return null;
             }
 
             eleve.SchoolId = school.Id;
             _context.Eleves.Add(eleve);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync().ConfigureAwait(false);
 
             var createdEleveMini = await _context.Eleves
                 .Include(e => e.Schools)
-                .FirstOrDefaultAsync(e => e.Id == eleve.Id);
+                .FirstOrDefaultAsync(e => e.Id == eleve.Id)
+                .ConfigureAwait(false);
             return createdEleveMini;
         }
 
         public async Task<EleveMini?> UpdateEleveByIdAsync(int id, EleveMini updatedEleve)
         {
             var eleveMini = await _context.Eleves
-                .Include(e => e.Schools)
-                .FirstOrDefaultAsync(e => e.Id == id);
-            if (eleveMini == null)
+                .FirstOrDefaultAsync(e => e.Id == id).ConfigureAwait(false);
+            if (eleveMini is null)
             {
                 return null;
             }
@@ -78,7 +77,7 @@ namespace Models.Repository
 
             _context.Entry(eleveMini).State = EntityState.Modified;
 
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync().ConfigureAwait(false);
             return eleveMini;
         }
 
@@ -94,9 +93,7 @@ namespace Models.Repository
             if (predicate != null)
                 retour = retour.Where(predicate);
 
-            if (asNoTracking != true)
-                retour = retour.NoApplyTracking();
-            return globalVar;
+            return retour.NoApplyTracking(asNoTracking);
         }
     }
 }
